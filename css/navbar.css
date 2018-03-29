@@ -1,0 +1,20 @@
+/*CSS File for Navigation Bar*/
+@import url('https://fonts.googleapis.com/css?family=Chicle');
+
+.navbar-brand{
+    font-weight: bolder;
+    font-size: 2em !important;
+    font-family: 'Chicle', cursive;
+    color: #7B1842 !important;
+}
+
+.navbar-brand img{
+    width: 1em !important;
+}
+
+.nav-item{
+    color: #7B1842 !important;
+    font-weight: bold;
+}
+
+
