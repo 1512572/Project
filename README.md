@@ -6,7 +6,7 @@
 - Nguyễn Đào Xuân Trường    -   MSSV 1512624.
 
 ## Prerequisites
-Cần sử dụng kết nối Internet.
+- Cần sử dụng kết nối Internet.
 
 
 
