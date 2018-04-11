@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+
+html{
+	height: 100% !important;
+}
+
+body{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    height: 100%;
+}
+
+.content{
+	flex: 1 0 auto;
+	-webkit-flex: 1 0 auto;
+	min-height: 200px;
+}
+
+footer{
+	flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+}
+
+#jabout{
+    background-color: #7B1842 !important;
+    color: #fff !important;
+    margin: 1em auto !important;
+}
+
+.aucard{
+    border-radius: 2em !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#uinfo{
+    margin-bottom: 0px;
+    position: relative;
+    background: none;
+    color: #DEDDDB;
+}
+
+#usimg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../img/about/hcmus.jpg');
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+     -o-filter: blur(5px);
+     -ms-filter: blur(5px);
+     filter: blur(5px);
+     z-index: -1;
+}
+
+
+
+
+  
+
+
