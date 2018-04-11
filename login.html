@@ -26,9 +26,9 @@
                 aria-expanded="false" aria-label="Toggle navigation"></button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active ml-3 mr-3">
+                    <li class="nav-item ml-3 mr-3">
                         <a class="nav-link" href="index.html">Trang chủ
-                            <span class="sr-only">(current)</span>
+
                         </a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
@@ -44,8 +44,10 @@
                             <i class="fa fa-shopping-cart fa-2x"></i>
                         </a>
                     </li>
-                    <li class="nav-item ml-3 mr-3">
-                        <a class="nav-link" href="login.html">Đăng nhập</a>
+                    <li class="nav-item ml-3 mr-3 active">
+                        <a class="nav-link" href="login.html">Đăng nhập
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -53,6 +55,70 @@
     </header>
 
     <div class="content">
+        <div class="jumbotron jumbotron-fluid" id="login-form">
+            <div class="container text-center">
+                <h1 class="display-4">Hãy tham gia cùng chúng tôi</h1>
+                <p class="lead">Đăng nhập ngay!</p>
+                <div class="container-fluid p-1">
+                    <form action="">
+                        <div class="container-fluid text-center justify-content-center">
+                            <div class="container text-center justify-content-center">
+                                <p>
+                                    <label for="email">
+                                        <h4 style="font-family: 'Montserrat', sans-serif;">Email</h4>
+                                    </label>
+                                    <hr style="height:1px; visibility:hidden; margin: 0; padding: 0;">
+                                    <input type="email" placeholder="Nhập email" name="email" required>
+                                </p>
+                            </div>
+
+                            <div class="container text-center justify-content-center">
+                                <p>
+                                    <label for="psw">
+                                        <h4 style="font-family: 'Montserrat', sans-serif;">Mật khẩu</h4>
+                                    </label>
+                                    <hr style="height:1px; visibility:hidden; margin: 0; padding: 0;">
+                                    <input type="password" placeholder="Nhập mật khẩu" name="psw" required>
+                                </p>
+                            </div>
+                            <br>
+                            <div class="container">
+                                <button type="submit" class="btn btn-outline-danger btn-lg" style="border-radius: 1em;">
+                                    <span style="font-weight: bold;">ĐĂNG NHẬP</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="container mt-3">
+                        <button class="btn btn-success btn-lg" id="signup-page-btn" style="border-radius: 1em;">
+                            <span style="font-weight: bold;">Chưa có tài khoản?</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="jumbotron jumbotron-fluid" id="signup-form">
+            <div class="container text-center">
+                <h1 class="display-4">Lần đầu tới trang web của chúng tôi?</h1>
+                <p class="lead">Đăng kí ngay để nhận những ưu đãi hấp dẫn</p>
+                <div class="container-fluid p-1">
+                    <form action="/action_page.php">
+                        <div class="container">
+                            <input type="email" placeholder="Nhập Email" name="email" required>
+                            <input type="text" placeholder="Nhập tên của bạn" name="uname" required>
+                            <input type="password" placeholder="Nhập mật khẩu" name="psw" required>
+                            <input type="password" placeholder="Nhập lại mật khẩu" name="psw-repeat" required>
+                            <div class="clearfix">
+                                <button type="button" class="btn-lg btn-danger" id="login-page-btn">Trở lại</button>
+                                <button type="submit" class="signupbtn btn-success btn-lg">Đăng kí</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 

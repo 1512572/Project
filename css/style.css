@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
-@import url('https://fonts.googleapis.com/css?family=Muli');
-
+@import url('https://fonts.googleapis.com/css?family=Muli'); 
 
 html{
 	height: 100% !important;
@@ -62,8 +61,53 @@ footer{
      z-index: -1;
 }
 
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+input[type=email], input[type=password], input[type=text] {
+    width: 55%;
+    padding: 12px 20px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+#signup-form{
+    display:none;
+}
 
 
+
+
+
+
+
+ 
 
 
   
