@@ -78,7 +78,8 @@ input[type=email], input[type=password], input[type=text] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    background: #f1f1f1;
+    background: lightgrey;
+    border-radius: 10px;
 }
 
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
@@ -99,6 +100,24 @@ span.psw {
 
 #signup-form{
     display:none;
+}
+
+.login-img{
+    background-image: url('../img/login/login-background.jpg');
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}
+
+.signup-img{
+    background-image: url('../img/login/signup-background.jpg');
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.3em 0.3em 0.3em;
 }
 
 
