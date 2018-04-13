@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
 @import url('https://fonts.googleapis.com/css?family=Muli'); 
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
+
 
 html{
 	height: 100% !important;
@@ -71,7 +73,7 @@ footer{
     }
 }
 
-input[type=email], input[type=password], input[type=text] {
+input[type=email], input[type=password], input[type=text], input[type=number] {
     width: 55%;
     padding: 12px 20px;
     margin: 5px 0 22px 0;
@@ -82,7 +84,7 @@ input[type=email], input[type=password], input[type=text] {
     border-radius: 10px;
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus {
     background-color: #ddd;
     outline: none;
 }
@@ -139,6 +141,53 @@ span.psw {
     font-size: 2em;
 }
 
+.spec-product{
+    font-weight: bold;
+    font-size: 2em;
+    color: black;
+    font-family: 'Muli', sans-serif;
+}
+
+.image-category:hover .overlay {
+    opacity: 0.9;
+}
+
+.image-category{
+    padding:0px !important; 
+    margin:0px !important;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+}
+
+.text {
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.image-category img{
+    width: 100% !important;
+}
+
+.image-category span{
+    font-family: 'Roboto Slab', sans-serif;
+}
 
 
 
