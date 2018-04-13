@@ -120,6 +120,25 @@ span.psw {
     text-shadow: black 0.3em 0.3em 0.3em;
 }
 
+.carousel img{
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#credit a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+#credit span{
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 2em;
+}
+
 
 
 
