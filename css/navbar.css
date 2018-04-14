@@ -24,3 +24,11 @@
 .logo-text{
     color: red;
 }
+
+.nav-link{
+    color: black !important;
+}
+
+.active .nav-link{
+    color: red !important;
+}
