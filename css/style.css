@@ -187,8 +187,31 @@ span.psw {
 
 .image-category span{
     font-family: 'Roboto Slab', sans-serif;
+    font-size: 1.7em;
 }
 
+.news-title{
+    font-size: 3em;
+    font-family: 'Roboto Slab', sans-serif;
+}
+
+.news-img{
+    padding-top: 2em;
+    padding-bottom: 2em;
+    width: 50%;
+    align-items: center;
+}
+
+.news-para{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.news-url{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+}
 
 
 
