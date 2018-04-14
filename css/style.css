@@ -244,3 +244,20 @@ a:hover, a:visited, a:link, a:active
 .nav-tabs .active{
     color: red !important;
 }
+
+.product-img{
+    width: 100%;
+}
+
+.product-attr{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.product-detail{
+    font-size: 1em;
+}
+
+.product-card{
+    height: 100% !important;
+}
