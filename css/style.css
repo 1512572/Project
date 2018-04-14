@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
-@import url('https://fonts.googleapis.com/css?family=Muli'); 
+@import url('https://fonts.googleapis.com/css?family=Muli');
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans');
-
-
-html{
-	height: 100% !important;
+html {
+    height: 100% !important;
 }
 
-body{
+body {
     display: flex;
     display: -webkit-flex;
     flex-direction: column;
@@ -16,29 +14,29 @@ body{
     height: 100%;
 }
 
-.content{
-	flex: 1 0 auto;
-	-webkit-flex: 1 0 auto;
-	min-height: 200px;
+.content {
+    flex: 1 0 auto;
+    -webkit-flex: 1 0 auto;
+    min-height: 200px;
 }
 
-footer{
-	flex: 0 0 auto;
+footer {
+    flex: 0 0 auto;
     -webkit-flex: 0 0 auto;
 }
 
-#jabout{
+#jabout {
     background-color: #1a1a1a !important;
     color: #fff !important;
     margin: 1em auto !important;
 }
 
-.aucard{
+.aucard {
     border-radius: 2em !important;
     font-family: 'Montserrat', sans-serif;
 }
 
-#uinfo{
+#uinfo {
     margin-bottom: 0px;
     position: relative;
     background: none;
@@ -57,23 +55,26 @@ footer{
     background-repeat: no-repeat;
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
-     -o-filter: blur(5px);
-     -ms-filter: blur(5px);
-     filter: blur(5px);
-     z-index: -1;
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: -1;
 }
 
 @media screen and (max-width: 300px) {
     span.psw {
-       display: block;
-       float: none;
+        display: block;
+        float: none;
     }
     .cancelbtn {
-       width: 100%;
+        width: 100%;
     }
 }
 
-input[type=email], input[type=password], input[type=text], input[type=number] {
+input[type=email],
+input[type=password],
+input[type=text],
+input[type=number] {
     width: 55%;
     padding: 12px 20px;
     margin: 5px 0 22px 0;
@@ -84,7 +85,10 @@ input[type=email], input[type=password], input[type=text], input[type=number] {
     border-radius: 10px;
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus {
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus {
     background-color: #ddd;
     outline: none;
 }
@@ -100,11 +104,11 @@ span.psw {
     padding-top: 16px;
 }
 
-#signup-form{
-    display:none;
+#signup-form {
+    display: none;
 }
 
-.login-img{
+.login-img {
     background-image: url('../img/login/login-background.jpg');
     background-position: 0% 25%;
     background-size: cover;
@@ -113,7 +117,7 @@ span.psw {
     text-shadow: black 0.3em 0.3em 0.3em;
 }
 
-.signup-img{
+.signup-img {
     background-image: url('../img/login/signup-background.jpg');
     background-position: 0% 25%;
     background-size: cover;
@@ -122,7 +126,7 @@ span.psw {
     text-shadow: black 0.3em 0.3em 0.3em;
 }
 
-.carousel img{
+.carousel img {
     padding: 0;
     display: block;
     margin: 0 auto;
@@ -130,18 +134,18 @@ span.psw {
     max-width: 100%;
 }
 
-#credit a{
+#credit a {
     text-decoration: none;
     color: whitesmoke;
 }
 
-#credit span{
+#credit span {
     text-decoration: none;
     color: whitesmoke;
     font-size: 2em;
 }
 
-.spec-product{
+.spec-product {
     font-weight: bold;
     font-size: 2em;
     color: black;
@@ -152,9 +156,9 @@ span.psw {
     opacity: 0.9;
 }
 
-.image-category{
-    padding:0px !important; 
-    margin:0px !important;
+.image-category {
+    padding: 0px !important;
+    margin: 0px !important;
 }
 
 .overlay {
@@ -181,33 +185,33 @@ span.psw {
     text-align: center;
 }
 
-.image-category img{
+.image-category img {
     width: 100% !important;
 }
 
-.image-category span{
+.image-category span {
     font-family: 'Roboto Slab', sans-serif;
     font-size: 1.7em;
 }
 
-.news-title{
+.news-title {
     font-size: 3em;
     font-family: 'Roboto Slab', sans-serif;
 }
 
-.news-img{
+.news-img {
     padding-top: 2em;
     padding-bottom: 2em;
     width: 50%;
     align-items: center;
 }
 
-.news-para{
+.news-para {
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
 }
 
-.news-url{
+.news-url {
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
     text-decoration: none;
@@ -217,15 +221,26 @@ span.psw {
     background: none;
     padding: 0px;
     border: none;
-  }
+}
 
+.row .card {
+    background-color: whitesmoke;
+}
 
+.row img {
+    width: 100% !important;
+}
 
+.product-info {
+    text-decoration: none;
+    color: black;
+}
 
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none !important;
+}
 
- 
-
-
-  
-
-
+.nav-tabs .active{
+    color: red !important;
+}
