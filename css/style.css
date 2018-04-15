@@ -17,7 +17,7 @@ body {
 .content {
     flex: 1 0 auto;
     -webkit-flex: 1 0 auto;
-    min-height: 200px;
+    min-height: 700px;
 }
 
 footer {
@@ -260,4 +260,14 @@ a:hover, a:visited, a:link, a:active
 
 .product-card{
     height: 100% !important;
+}
+
+.acc-detail{
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.comment-text{
+    width: 100%;
+    resize: none;
 }
