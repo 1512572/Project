@@ -236,38 +236,47 @@ span.psw {
     color: black;
 }
 
-a:hover, a:visited, a:link, a:active
-{
+a:hover,
+a:visited,
+a:link,
+a:active {
     text-decoration: none !important;
 }
 
-.nav-tabs .active{
+.nav-tabs .active {
     color: red !important;
 }
 
-.product-img{
+.product-img {
     width: 100%;
 }
 
-.product-attr{
+.product-attr {
     font-size: 1.1em;
     font-weight: bold;
 }
 
-.product-detail{
+.product-detail {
     font-size: 1em;
 }
 
-.product-card{
+.product-card {
     height: 100% !important;
 }
 
-.acc-detail{
+.acc-detail {
     font-weight: bold;
     font-size: 1.1em;
 }
 
-.comment-text{
+.comment-text {
     width: 100%;
     resize: none;
+}
+
+#category-tab {
+    position: -webkit-sticky;
+    position: sticky;
+    top: -1px;
+    z-index: 1000;
 }
