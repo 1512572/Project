@@ -2,7 +2,7 @@
 <html lang="vi">
 
 <head>
-    <title>Admin</title>
+    <title>Sửa thông tin sản phẩm</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta lang="vi">
@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/admin.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 
@@ -33,14 +32,12 @@
                         <a class="nav-link" href="admin.html">Quản lý đơn hàng
                         </a>
                     </li>
-                    <li class="nav-item active ml-3 mr-3">
-                        <a class="nav-link" href="admin-manageProducts.html">Quản lý sản phẩm
-                            <span class="sr-only">(current)</span>
-                        </a>
+                    <li class="nav-item ml-3 mr-3">
+                        <a class="nav-link" href="admin-manageProducts.html">Quản lý sản phẩm</a>
+
                     </li>
                     <li class="nav-item ml-3 mr-3">
-                        <a class="nav-link" href="admin-manageMembers.html">Quản lý thành viên
-                        </a>
+                        <a class="nav-link" href="admin-manageMembers.html">Quản lý thành viên</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -53,73 +50,73 @@
     </header>
 
     <div class="content container mt-3 mb-3">
+        <form>
+            <div class="card mt-3 mb-3">
+                <div class="card-header text-center">
+                    <h3>Thay đổi thông tin sản phẩm</h3>
+                </div>
+                <div class="card-body text-center">
+                    <hr>
+                    <div class="row">
+                        <div class="col-3">
+                            <span class="acc-detail">SĐT</span>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" value="0123.456.789" style="margin: 0; padding: 5px;">
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Mã sản phẩm</th>
-                    <th scope="col">Tên sản phẩm</th>
-                    <th scope="col">Giá tiền</th>
-                    <th scope="col">Chất liệu</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-toggle="tooltip" title="Click để xem chi tiết" class='clickable-row' data-href="../product/sample-product.html">
-                    <th scope="row">SP00001</th>
-                    <td>Sample 1</td>
-                    <td>100.000đ</td>
-                    <td>Gỗ</td>
-                    <td>
-                        <a href="admin-editProduct.html" class="cart">
-                            <i class="fa fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr data-toggle="tooltip" title="Click để xem chi tiết" class='clickable-row' data-href="../product/sample-product.html">
-                    <th scope="row">SP00001</th>
-                    <td>Sample 1</td>
-                    <td>100.000đ</td>
-                    <td>Gỗ</td>
-                    <td>
-                        <a href="admin-editProduct.html" class="cart">
-                            <i class="fa fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
-                        </a>
-                    </td>
-                </tr>
-                <tr data-toggle="tooltip" title="Click để xem chi tiết" class='clickable-row' data-href="../product/sample-product.html">
-                    <th scope="row">SP00001</th>
-                    <td>Sample 1</td>
-                    <td>100.000đ</td>
-                    <td>Gỗ</td>
-                    <td>
-                        <a href="admin-editProduct.html" class="cart">
-                            <i class="fa fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-3">
+                            <span class="acc-detail">Địa chỉ</span>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" value="123/456 Nguyễn Tất Thành, P.1, Q.1, TP.HCM" style="margin: 0; padding: 5px;">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-3">
+                            <span class="acc-detail">Mật khẩu</span>
+                        </div>
+                        <div class="col-7">
+                            <input type="text" value="asdfqwerty123" style="margin: 0; padding: 5px;">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-3">
+                            <span class="acc-detail">Loại tài khoản</span>
+                        </div>
+                        <div class="col-7">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Khách hàng
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Admin</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row text-center">
+                        <div class="col-sm-6">
+                            <a href="admin-manageMembers.html">
+                                <button type="button" class="btn btn-outline-danger">Trở lại</button>
+                            </a>
 
-        <div class="pagination pagination-centered center-block">
-            <ul>
-                <li>
-                    <a href="#">←</a>
-                </li>
-                <li class="active">
-                    <a href="#">10</a>
-                </li>
-                <li class="disabled">
-                    <a href="#">...</a>
-                </li>
-                <li>
-                    <a href="#">20</a>
-                </li>
-                <li>
-                    <a href="#">→</a>
-                </li>
-            </ul>
-        </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-outline-success">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <footer>
@@ -183,7 +180,6 @@
     <!-- Optional JavaScript -->
     <script src="https://use.fontawesome.com/914414de5a.js"></script>
     <script src="../js/javascript.js"></script>
-    <script src="../js/admin.js"></script>
 </body>
 
 </html>
