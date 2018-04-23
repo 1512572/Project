@@ -280,3 +280,7 @@ a:active {
     top: -1px;
     z-index: 1000;
 }
+
+.order-img-holder{
+    width: 100%;
+}
