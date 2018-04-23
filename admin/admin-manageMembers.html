@@ -29,17 +29,18 @@
                 aria-expanded="false" aria-label="Toggle navigation"></button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active ml-3 mr-3">
+                    <li class="nav-item ml-3 mr-3">
                         <a class="nav-link" href="admin.html">Quản lý đơn hàng
-                            <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
                         <a class="nav-link" href="admin-manageProducts.html">Quản lý sản phẩm</a>
 
                     </li>
-                    <li class="nav-item ml-3 mr-3">
-                        <a class="nav-link" href="admin-manageMembers.html">Quản lý thành viên</a>
+                    <li class="nav-item active ml-3 mr-3">
+                        <a class="nav-link" href="admin-manageMembers.html">Quản lý thành viên
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -56,62 +57,45 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Mã số đơn hàng</th>
-                    <th scope="col">Ngày đặt</th>
-                    <th scope="col">Tổng tiền</th>
-                    <th scope="col">Tình trạng</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Họ và tên</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">B2222222</th>
-                    <td>23-04-2018</td>
-                    <td>110.000đ</td>
-                    <td data-toggle="tooltip" title="Chọn để cập nhật">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Đang giao
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Đã xác nhận</a>
-                                </li>
-                                <li>
-                                    <a href="#">Hoàn thành</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
+                <tr data-toggle="tooltip" title="Click để xem chi tiết" class='clickable-row' data-href="admin-readMember.html">
+                    <th scope="row">1</th>
+                    <td>Mark@gmail.com</td>
+                    <td>0888503839</td>
+                    <td>Mark James</td>
                     <td>
-                        <button type="button" class="btn btn-light">
-                            <i class="fa fa-trash" data-toggle="tooltip" title="Xóa"></i>
-                        </button>
+                        <a href="admin-editMember.html" class="cart">
+                            <i class="fa fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
+                        </a>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">A1111111</th>
-                    <td>20-04-2018</td>
-                    <td>220.000đ</td>
-                    <td data-toggle="tooltip" title="Chọn để cập nhật">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Hoàn thành
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Đã xác nhận</a>
-                                </li>
-                                <li>
-                                    <a href="#">Đang giao</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
+                <tr data-toggle="tooltip" title="Click để xem chi tiết" class='clickable-row' data-href="admin-readMember.html">
+                    <th scope="row">2</th>
+                    <td>Jacob@yahoo.com</td>
+                    <td>0667484757</td>
+                    <td>Jacob Thornton</td>
                     <td>
-                        <button type="button" class="btn btn-light">
-                            <i class="fa fa-trash" data-toggle="tooltip" title="Xóa"></i>
-                        </button>
+                        <a href="admin-editMember.html" class="cart">
+                            <i class="fa fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr data-toggle="tooltip" title="Click để xem chi tiết" class='clickable-row' data-href="admin-readMember.html">
+                    <th scope="row">2</th>
+                    <td>Larry@yahoo.com</td>
+                    <td>0538283844</td>
+                    <td>Larry The Bird</td>
+                    <td>
+                        <a href="admin-editMember.html" class="cart">
+                            <i class="fa fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>

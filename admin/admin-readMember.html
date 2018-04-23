@@ -2,7 +2,7 @@
 <html lang="vi">
 
 <head>
-    <title>Admin</title>
+    <title>Chi tiết thành viên</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta lang="vi">
@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/admin.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 
@@ -29,9 +28,8 @@
                 aria-expanded="false" aria-label="Toggle navigation"></button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active ml-3 mr-3">
+                    <li class="nav-item ml-3 mr-3">
                         <a class="nav-link" href="admin.html">Quản lý đơn hàng
-                            <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
@@ -53,89 +51,70 @@
 
     <div class="content container mt-3 mb-3">
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Mã số đơn hàng</th>
-                    <th scope="col">Ngày đặt</th>
-                    <th scope="col">Tổng tiền</th>
-                    <th scope="col">Tình trạng</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">B2222222</th>
-                    <td>23-04-2018</td>
-                    <td>110.000đ</td>
-                    <td data-toggle="tooltip" title="Chọn để cập nhật">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Đang giao
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Đã xác nhận</a>
-                                </li>
-                                <li>
-                                    <a href="#">Hoàn thành</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-light">
-                            <i class="fa fa-trash" data-toggle="tooltip" title="Xóa"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">A1111111</th>
-                    <td>20-04-2018</td>
-                    <td>220.000đ</td>
-                    <td data-toggle="tooltip" title="Chọn để cập nhật">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Hoàn thành
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="#">Đã xác nhận</a>
-                                </li>
-                                <li>
-                                    <a href="#">Đang giao</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-light">
-                            <i class="fa fa-trash" data-toggle="tooltip" title="Xóa"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="pagination pagination-centered center-block">
-            <ul>
-                <li>
-                    <a href="#">←</a>
-                </li>
-                <li class="active">
-                    <a href="#">10</a>
-                </li>
-                <li class="disabled">
-                    <a href="#">...</a>
-                </li>
-                <li>
-                    <a href="#">20</a>
-                </li>
-                <li>
-                    <a href="#">→</a>
-                </li>
-            </ul>
+        <div class="card mt-3 mb-3">
+            <div class="card-header text-center">
+                <h3>Chi tiết thành viên</h3>
+            </div>
+            <div class="card-body text-center">
+                <div class="row">
+                    <div class="col-3">
+                        <span class="acc-detail">Email</span>
+                    </div>
+                    <div class="col-7">
+                        nguyenvana@gmail.com
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <span class="acc-detail">Loại tài khoản</span>
+                    </div>
+                    <div class="col-7">
+                        Thành viên
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <span class="acc-detail">Họ tên</span>
+                    </div>
+                    <div class="col-7">
+                        Nguyễn Văn A
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <span class="acc-detail">SĐT</span>
+                    </div>
+                    <div class="col-7">
+                        0123.456.789
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <span class="acc-detail">Địa chỉ</span>
+                    </div>
+                    <div class="col-7">
+                        123/456 Nguyễn Tất Thành, P.1, Q.1, TP.HCM
+                    </div>
+                </div>
+                <hr>
+                <div class="row text-center">
+                    <div class="col-sm-6">
+                        <!-- <button type="button" class="btn btn-outline-dark">Sửa thông tin cá nhân</button> -->
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-outline-success" href="admin-editMember.html">Sửa thông tin</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-outline-danger">Xóa thành viên</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
     <footer>
@@ -199,7 +178,6 @@
     <!-- Optional JavaScript -->
     <script src="https://use.fontawesome.com/914414de5a.js"></script>
     <script src="../js/javascript.js"></script>
-    <script src="../js/admin.js"></script>
 </body>
 
 </html>
