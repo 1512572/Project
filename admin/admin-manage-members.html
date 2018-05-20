@@ -2,7 +2,7 @@
 <html lang="vi">
 
 <head>
-    <title>Sửa thông tin thành viên</title>
+    <title>Admin</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta lang="vi">
@@ -10,9 +10,11 @@
     <link rel="icon" href="../img/icon.png">
     <!-- Optional CSS -->
     <link rel="stylesheet" href="../fontawesome/fontawesome_css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../jquery-ui-1.12.1.custom/jquery-ui.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/admin.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 
@@ -34,11 +36,11 @@
                         </a>
                     </li>
                     <li class="nav-item ml-3 mr-3">
-                        <a class="nav-link" href="admin-manageProducts.html">Quản lý sản phẩm</a>
+                        <a class="nav-link" href="admin-manage-products.html">Quản lý sản phẩm</a>
 
                     </li>
                     <li class="nav-item active ml-3 mr-3">
-                        <a class="nav-link" href="admin-manageMembers.html">Quản lý thành viên
+                        <a class="nav-link" href="admin-manage-members.html">Quản lý thành viên
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -53,73 +55,73 @@
     </header>
 
     <div class="content container mt-3 mb-3">
-        <form>
-            <div class="card mt-3 mb-3">
-                <div class="card-header text-center">
-                    <h3>Thay đổi thông tin thành viên</h3>
-                </div>
-                <div class="card-body text-center">
-                    <hr>
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="acc-detail">SĐT</span>
-                        </div>
-                        <div class="col-7">
-                            <input type="text" value="0123.456.789" style="margin: 0; padding: 5px;">
 
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="acc-detail">Địa chỉ</span>
-                        </div>
-                        <div class="col-7">
-                            <input type="text" value="123/456 Nguyễn Tất Thành, P.1, Q.1, TP.HCM" style="margin: 0; padding: 5px;">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="acc-detail">Mật khẩu</span>
-                        </div>
-                        <div class="col-7">
-                            <input type="text" value="asdfqwerty123" style="margin: 0; padding: 5px;">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="acc-detail">Loại tài khoản</span>
-                        </div>
-                        <div class="col-7">
-                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Khách hàng
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">Admin</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row text-center">
-                        <div class="col-sm-6">
-                            <a href="admin-manageMembers.html">
-                                <button type="button" class="btn btn-outline-danger">Trở lại</button>
-                            </a>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Số điện thoại</th>
+                    <th scope="col">Họ và tên</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class='clickable-row' data-href="admin-read-member.html">
+                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">1</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">Mark@gmail.com</td>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">0888503839</td>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">Mark James</td>
+                    <td>
+                        <a href="admin-edit-member.html" class="cart">
+                            <i class="fas fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr class='clickable-row' data-href="admin-read-member.html">
+                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">2</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">Jacob@yahoo.com</td>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">0667484757</td>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">Jacob Thornton</td>
+                    <td>
+                        <a href="admin-edit-member.html" class="cart">
+                            <i class="fas fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr class='clickable-row' data-href="admin-read-member.html">
+                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">2</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">Larry@yahoo.com</td>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">0538283844</td>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết">Larry The Bird</td>
+                    <td>
+                        <a href="admin-edit-member.html" class="cart">
+                            <i class="fas fa-edit" data-toggle="tooltip" title="Sửa thông tin"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-                        </div>
-                        <div class="col-sm-6">
-                            <button type="submit" class="btn btn-outline-success">Lưu</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+        <div class="pagination pagination-centered center-block">
+            <ul>
+                <li>
+                    <a href="#">←</a>
+                </li>
+                <li class="active">
+                    <a href="#">10</a>
+                </li>
+                <li class="disabled">
+                    <a href="#">...</a>
+                </li>
+                <li>
+                    <a href="#">20</a>
+                </li>
+                <li>
+                    <a href="#">→</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <footer>
@@ -181,8 +183,9 @@
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <!-- Optional JavaScript -->
-    
+    <script src="../jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
     <script src="../js/javascript.js"></script>
+    <script src="../js/admin.js"></script>
 </body>
 
 </html>
