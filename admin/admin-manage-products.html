@@ -67,19 +67,25 @@
 
         <a class="btn btn-primary mb-4" href="admin-add-product.html">Thêm sản phẩm mới</a>
 
-        <table class="table table-hover">
+        <table id="myTable" class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Mã sản phẩm</th>
+                    <!--When a header is clicked, run the sortTable function, with a parameter,
+                         0 for sorting by the first-child-td-element on row,
+                         1 for sorting by the second-child-td-element on row,
+                         2 for sorting by the thirt-child-td-element on row,
+                         3 for sorting by the fourth-child-td-element on row,
+                         ...:-->
+                    <th scope="col" onclick="sortTable(0)" data-toggle="tooltip" title="Click để sắp xếp">Mã sản phẩm</th>
                     <th scope="col">Tên sản phẩm</th>
-                    <th scope="col">Giá tiền</th>
-                    <th scope="col">Chất liệu</th>
+                    <th scope="col" onclick="sortTable(2)" data-toggle="tooltip" title="Click để sắp xếp">Giá tiền</th>
+                    <th scope="col" onclick="sortTable(3)" data-toggle="tooltip" title="Click để sắp xếp">Chất liệu</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr class='clickable-row' data-href="../product/sample-product.html">
-                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">SP00001</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết" scope="row">SP00001</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Sample 1</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">100.000đ</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Gỗ</td>
@@ -90,7 +96,7 @@
                     </td>
                 </tr>
                 <tr class='clickable-row' data-href="../product/sample-product.html">
-                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">SP00001</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết" scope="row">SP00001</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Sample 1</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">100.000đ</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Gỗ</td>
@@ -101,7 +107,7 @@
                     </td>
                 </tr>
                 <tr class='clickable-row' data-href="../product/sample-product.html">
-                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">SP00001</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết" scope="row">SP00001</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Sample 1</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">100.000đ</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Gỗ</td>

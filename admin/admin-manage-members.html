@@ -64,11 +64,16 @@
     </header>
 
     <div class="content container mt-3 mb-3">
-
-        <table class="table table-hover">
+        <table id="myTable" class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <!--When a header is clicked, run the sortTable function, with a parameter,
+                         0 for sorting by the first-child-td-element on row,
+                         1 for sorting by the second-child-td-element on row,
+                         2 for sorting by the thirt-child-td-element on row,
+                         3 for sorting by the fourth-child-td-element on row,
+                         ...:-->
+                    <th scope="col" onclick="sortTable(0)" data-toggle="tooltip" title="Click để sắp xếp">Ngày tham gia</th>
                     <th scope="col">Email</th>
                     <th scope="col">Số điện thoại</th>
                     <th scope="col">Họ và tên</th>
@@ -77,7 +82,7 @@
             </thead>
             <tbody>
                 <tr class='clickable-row' data-href="admin-read-member.html">
-                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">1</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết" scope="row">1</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Mark@gmail.com</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">0888503839</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Mark James</td>
@@ -88,7 +93,7 @@
                     </td>
                 </tr>
                 <tr class='clickable-row' data-href="admin-read-member.html">
-                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">2</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết" scope="row">2</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Jacob@yahoo.com</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">0667484757</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Jacob Thornton</td>
@@ -99,7 +104,7 @@
                     </td>
                 </tr>
                 <tr class='clickable-row' data-href="admin-read-member.html">
-                    <th data-toggle="tooltip" title="Click để xem chi tiết" scope="row">2</th>
+                    <td data-toggle="tooltip" title="Click để xem chi tiết" scope="row">2</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Larry@yahoo.com</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">0538283844</td>
                     <td data-toggle="tooltip" title="Click để xem chi tiết">Larry The Bird</td>

@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="../css/admin.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-
-
 </head>
 
 <body>
@@ -63,22 +61,27 @@
     </header>
 
     <div class="content container mt-3 mb-3">
-
-        <table class="table table-hover">
+        <table id="myTable" class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">Mã số đơn hàng</th>
-                    <th scope="col">Ngày đặt</th>
-                    <th scope="col">Tổng tiền</th>
-                    <th scope="col">Tình trạng</th>
+                    <!--When a header is clicked, run the sortTable function, with a parameter,
+                         0 for sorting by the first-child-td-element on row,
+                         1 for sorting by the second-child-td-element on row,
+                         2 for sorting by the thirt-child-td-element on row,
+                         3 for sorting by the fourth-child-td-element on row,
+                         ...:-->
+                    <th scope="col" onclick="sortTable(0)" data-toggle="tooltip" title="Click để sắp xếp">Mã số đơn hàng</th>
+                    <th scope="col" onclick="sortTable(1)" data-toggle="tooltip" title="Click để sắp xếp">Ngày đặt</th>
+                    <th scope="col" onclick="sortTable(2)" data-toggle="tooltip" title="Click để sắp xếp">Tổng tiền</th>
+                    <th scope="col" onclick="sortTable(3)" data-toggle="tooltip" title="Click để sắp xếp">Tình trạng</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <th class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
                         B2222222
-                    </th>
+                    </td>
                     <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">23-04-2018</td>
                     <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">110.000đ</td>
                     <td>
@@ -100,9 +103,105 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
                         A1111111
-                    </th>
+                    </td>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">20-04-2018</td>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">220.000đ</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Đã xác nhận
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Đang giao</a>
+                                <a class="dropdown-item" href="#">Hoàn thành</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" title="Xóa">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
+                        B2222222
+                    </td>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">23-04-2018</td>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">110.000đ</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Đang giao
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Đã xác nhận</a>
+                                <a class="dropdown-item" href="#">Hoàn thành</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" title="Xóa">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
+                        A1111111
+                    </td>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">20-04-2018</td>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">220.000đ</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Đã xác nhận
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Đang giao</a>
+                                <a class="dropdown-item" href="#">Hoàn thành</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" title="Xóa">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
+                        B2222222
+                    </td>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">23-04-2018</td>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">110.000đ</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Đang giao
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Đã xác nhận</a>
+                                <a class="dropdown-item" href="#">Hoàn thành</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-light" data-toggle="tooltip" title="Xóa">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
+                        A1111111
+                    </td>
                     <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">20-04-2018</td>
                     <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">220.000đ</td>
                     <td>

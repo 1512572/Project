@@ -1,3 +1,11 @@
+td:first-child {
+  font-weight: bold;
+}
+
+[onclick]:hover {
+  cursor: pointer;
+}
+
 .clickable-row:hover {
   cursor: pointer;
 }

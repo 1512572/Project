@@ -11,6 +11,7 @@
     <!-- Optional CSS -->
     <link rel="stylesheet" href="fontawesome/fontawesome_css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/scrollTopBottom.css">
+    <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -65,13 +66,28 @@
     </header>
 
     <div class="content">
-        <div class="container text-center p-3" id="search-section">
-            <from>
-                <input type="text" placeholder="Tìm kiếm sản phẩm..." required>
-                <button type="submit" id="completed-task" class="fabutton">
-                    <i class="fas fa-search fa-2x"></i>
-                </button>
-            </from>
+        <div id="filterProduct">
+            <div class="container text-center pt-3" id="search-section">
+                <from>
+                    <input type="text" placeholder="Tìm kiếm sản phẩm..." required>
+                    <button type="submit" id="completed-task" class="fabutton">
+                        <i class="fas fa-search fa-2x"></i>
+                    </button>
+                </from>
+            </div>
+            <!-- Nút sắp xếp tham khảo ở: https://www.w3schools.com/howto/howto_js_sort_list.asp -->
+            <div class="container pb-4" id="price-slider-section">
+                <label>
+                    <label for="amount">Tầm giá:</label>
+                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;" data-toggle="tooltip" title="Kéo thanh bên dưới để lựa chọn tầm giá">
+                    <div id="btn-group-sort" class="btn-group ml-3 mt-2 position-absolute" data-toggle="tooltip" title="Sắp xếp theo giá">
+                        <button type="button" class="btn btn-dark">Sắp tăng</button>
+                        <button type="button" class="btn btn-dark">Sắp giảm</button>
+                    </div>
+                </label>
+                <div id="slider-range-price-category"></div>
+            </div>
+
         </div>
 
         <div class="container">
@@ -1244,8 +1260,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <footer>
@@ -1307,6 +1321,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- Optional JavaScript -->
+    <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
     <script src="js/javascript.js"></script>
     <script src="js/category-load.js"></script>
     <script src="js/scrollTopBottom.js"></script>
