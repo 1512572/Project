@@ -11,6 +11,7 @@
     <!-- Optional CSS -->
     <link rel="stylesheet" href="../fontawesome/fontawesome_css/fontawesome-all.min.css">
     <link rel="stylesheet" href="../jquery-ui-1.12.1.custom/jquery-ui.min.css">
+    <link rel="stylesheet" href="../css/scrollTopBottom.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
@@ -22,6 +23,14 @@
 </head>
 
 <body>
+    <!-- Scroll to top, down buttons -->
+    <button id="scrollToTopBtn" class="scrollTopBottomBtn" data-toggle="tooltip" title="Về đầu trang">
+        <i class="fas fa-angle-double-up fa-2x"></i>
+    </button>
+    <button id="scrollToBottomBtn" class="scrollTopBottomBtn" data-toggle="tooltip" title="Về cuối trang" style="display: block;">
+        <i class="fas fa-angle-double-down fa-2x"></i>
+    </button>
+
     <header>
         <nav class="navbar navbar-expand-md navbar-light bg-light pl-5">
             <a class="navbar-brand mr-5" href="../admin/admin.html">Wild
@@ -188,6 +197,7 @@
     <script src="../jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
     <script src="../js/javascript.js"></script>
     <script src="../js/admin.js"></script>
+    <script src="../js/scrollTopBottom.js"></script>
 </body>
 
 </html>
