@@ -97,13 +97,24 @@
             </div>
         </div>
 
-        <div class="container mt-5">
-            <div class="container-fluid">
-                <form class="text-center">
-                    <textarea rows="4" cols="50" placeholder=" Viết bình luận của bạn về sản phẩm này" class="comment-text"></textarea>
-                    <input type="submit" value="Bình luận">
-                </form>
+        <div class="container-fluid justify-content-center mt-5 text-center">
+            <div class="img-preview-div mb-1" style="height: 300px; width: 360px; border: solid black; margin: auto;">
+                <img src="" id="img-preview" style="margin-left: auto; margin-right: auto;">
             </div>
+
+            <form>
+                <label for="img-file">Chọn hình ảnh: </label>
+                <input type="file" name="img-file"><br>
+                <input type="radio" name="img-effect" value="greyscale"> Greyscale<br>
+                <input type="radio" name="img-effect" value="invert"> Invert<br>
+                <input type="radio" name="img-effect" value="sepia"> Sepia<br>
+                <label for="brightness">Độ sáng: </label>
+                <input type="number" min=-100 max=100 name="brightness" value=0 class="form-control-range"><br>
+                <label for="opacity">Opacity: </label>
+                <input type="number" min=0 max=100 name="opacity" value=100 class="form-control-range"><br>
+                <button type="button" class="btn btn-danger">Hủy</button>
+                <button type="submit" class="btn btn-success">Lưu</button>
+            </form>
         </div>
 
     </div>
@@ -167,7 +178,7 @@
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <!-- Optional JavaScript -->
-    
+
     <script src="../js/javascript.js"></script>
 </body>
 
