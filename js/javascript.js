@@ -1,3 +1,9 @@
+//TODO: remove the guide demo text (.todo)
+$('.todo').addClass("bg-info").css({ "font-size": "150%" })
+    .each(function (index) {
+        $(this).text('//' + $(this).text());
+    });
+
 $('#signup-page-btn').click(function (e) {
     $('#login-form').fadeOut('fast', function () {
         $('#signup-form').fadeIn('fast');
