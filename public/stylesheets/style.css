@@ -1,8 +1,94 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC');/*font-family: 'Bowlby One SC', cursive;*/
+
+* {
+  margin:0;
+  padding:0;
 }
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-height: 1000px;
+}
+
+/*------------- Header -----------------*/
+.navbar-brand{
+	font-family: 'Bowlby One SC', cursive;
+	font-size: 2em;
+	font-weight: bold;	
+}
+
+.nav-item{
+	font-weight: bold;
+}
+/*--------------------------------------*/
+
+/*------------- Footer -----------------*/
+
+footer .footer-copyright{
+	background-color: #383737;
+	padding-bottom:3px;
+  text-align: center;
+  width: 100%;
+}
+
+footer .footer-copyright p{
+	margin:10px;
+	color: #ccc;
+}
+
+footer a:hover, footer a:focus{
+	text-decoration: none;
+	color:white;
+}
+
+footer .myCols{
+	text-align: center;
+}
+
+footer .social-networks{
+	text-align: center;
+	padding-bottom: 1em;
+}
+
+footer .social-networks a{
+    font-size: 32px;
+    margin-right: 5px;
+    margin-left: 5px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+footer .social-networks a:hover{
+	text-decoration: none;
+
+}
+
+footer .facebook:hover{
+	color:#0077e2;
+}
+
+footer .google:hover{
+	color:#ef1a1a;
+}
+
+footer .twitter:hover{
+	color: #00aced;
+}
+
+@media screen and (max-width: 767px){
+	footer {
+		text-align: center;
+	}
+}
+
+/*-------------------------------------------*/
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+.footer-text-description{
+	font-style: italic;
 }

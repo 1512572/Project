@@ -2,6 +2,8 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var exphbs = require('express-handlebars');
+var mongoose = require('mongoose');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -9,7 +11,13 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+mongoose.connect('mongodb://user:1234@ds237620.mlab.com:37620/web-dev-project');
+
 // view engine setup
+app.engine('.hbs', exphbs({
+  defaultLayout: 'layout',
+  extname: '.hbs',
+}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
