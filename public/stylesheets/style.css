@@ -10,6 +10,11 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+html{
+	position:relative; 
+	min-height: 100%;
+}
+
 /*----------- Custom text --------------*/
 .text-step{
 	font-weight: bold;
@@ -23,6 +28,11 @@ body {
 	font-family: 'Roboto Slab', serif;
 }
 
+.form-sign-label{
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
 /*------------- Header -----------------*/
 .navbar-brand{
 	font-family: 'Bowlby One SC', cursive;
@@ -33,9 +43,15 @@ body {
 .nav-item{
 	font-weight: bold;
 }
-/*--------------------------------------*/
 
 /*------------- Footer -----------------*/
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 footer .footer-copyright{
 	background-color: #383737;
@@ -95,12 +111,24 @@ footer .twitter:hover{
 	}
 }
 
-/*-------------------------------------------*/
-/*---------------- Carousel -----------------*/
+/*---------------- Card -----------------*/
+.card-sign-form{
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*------------------ Div ---------------------*/
 
+.signup_background{
+	background-image: url("/images/signup_background.jpg");
+}
 
-/*-------------------------------------------*/
+.signin_background{
+	background-image: url("/images/signin_background.jpg");
+	min-height: 400px;
+}
 
+/*--------------------------------------------*/
 a {
   color: #00B7FF;
   text-decoration: none;
