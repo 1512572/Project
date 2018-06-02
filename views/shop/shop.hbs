@@ -1,39 +1,38 @@
 <div class="container-fluid">
-    <form method="POST">
+    <form method="POST" action="/shop">
         <div class="maxwi border rounded mt-1 mb-1 p-2 row text-center bg-dark text-light">
             <div class="form-group col-md-3">
                 <label for="material">
                     <i class="fas fa-filter"></i> Chất liệu</label>
-                <select class="form-control" id="material">
-                    <option>Tất cả</option>
-                    <option>Gỗ</option>
-                    <option>Nhựa</option>
-                    <option>Kim loại</option>
-                    <option>Khác</option>
-                </select>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="material">
-                    <i class="fa fa-sort-numeric-up"></i> Sắp xếp theo</label>
-                <select class="form-control" id="material">
-                    <option>Không</option>
-                    <option>Tên</option>
-                    <option>Giá</option>
+                <select class="form-control" name="material">
+                    <option value="all">Tất cả</option>
+                    {{#each matList}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
                 </select>
             </div>
 
             <div class="form-group col-md-3">
                 <label for="material">
                     <i class="fa fa-sort"></i> Thứ tự</label>
-                <select class="form-control" id="material">
-                    <option>Tăng</option>
-                    <option>Giảm</option>
+                <select class="form-control" name="sortBy">
+                    <option value="none">Không</option>
+                    <option value="name">Tên</option>
+                    <option value="price">Giá</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="material">
+                    <i class="fa fa-sort"></i> Thứ tự</label>
+                <select class="form-control" name="order">
+                    <option value="1">Tăng</option>
+                    <option value="-1">Giảm</option>
                 </select>
             </div>
 
             <div class="form-group col-md-3 mid-text-div">
-                <button type="submit" class="btn btn-outline-light">Thực hiện</button>
+                <button type="submit" class="btn btn-outline-light">Xem</button>
             </div>
 
         </div>
