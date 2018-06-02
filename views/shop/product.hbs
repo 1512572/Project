@@ -1,0 +1,54 @@
+<div class="container mt-5 mb-5">
+    {{#if err}}
+    <div class="alert alert-danger">
+        Xuất hiện lỗi khi cố gắng truy cập sản phẩm này. Xin vui lòng xác nhận lại yêu cầu!
+    </div>
+    {{else}}
+    <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+            <div class="card product-detail-card">
+                <img class="card-img-top" src="{{product.image}}" alt="">
+                <div class="card-body product-detail-card">
+                    <table class="table table-hover table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-primary">Tên khung</th>
+                                <td class="text-center card-product-name">{{product.name}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-primary">Giá (VNĐ)</th>
+                                <td class="text-center card-product-price">{{product.price}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-primary">Chất liệu</th>
+                                <td class="text-center card-product-details">{{product.material}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-primary">Mô tả</th>
+                                <td class="text-center card-product-details">{{product.desc}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-primary">Chiều rộng (mm)</th>
+                                <td class="text-center card-product-details">{{product.width}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-primary">Chiều cao (mm)</th>
+                                <td class="text-center card-product-details">{{product.height}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer text-center">
+                    <button type="button" class="btn btn-lg btn-primary">Thêm vào giỏ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+
+
+</div>

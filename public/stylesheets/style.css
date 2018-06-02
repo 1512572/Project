@@ -18,6 +18,10 @@ html {
 	min-height: 100%;
 }
 
+.body-holder{
+	min-height: 400px;
+}
+
 /*----------- Custom text --------------*/
 
 .text-step {
@@ -39,11 +43,17 @@ html {
 
 .card-product-name {
 	font-weight: bold;
+	font-size: 1.5em;
 }
 
 .card-product-price {
 	color: red;
 	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.card-product-details{
+	font-size: 1.2em;
 }
 
 /*------------- Header -----------------*/
@@ -135,6 +145,10 @@ footer .twitter:hover {
 
 .product-card:hover {
 	border: solid grey;
+}
+
+.product-detail-card th{
+	width: 30%;
 }
 
 /*------------------ Div ---------------------*/

@@ -24,4 +24,12 @@ router.get('/shop', function (req, res, next) {
   });
 });
 
+router.get('/product/:id', function(req, res, next){
+  var id = req.params.id;
+  Product.findOne({ _id: id, status: true }, function(err, docs){
+    res.render('shop/product', {product: docs, err: err});
+  });
+  
+});
+
 module.exports = router;
