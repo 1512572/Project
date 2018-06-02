@@ -11,7 +11,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-mongoose.connect('mongodb://user:1234@ds237620.mlab.com:37620/web-dev-project');
+mongoose.connect('mongodb://admin:abcd1234@ds245680.mlab.com:45680/group2webproject');
 
 // view engine setup
 app.engine('.hbs', exphbs({

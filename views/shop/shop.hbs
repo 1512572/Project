@@ -1,9 +1,9 @@
 <div class="container-fluid">
-
     <form method="POST">
         <div class="maxwi border rounded mt-1 mb-1 p-2 row text-center bg-dark text-light animated bounceIn">
             <div class="form-group col-md-3">
-                <label for="material"><i class="fas fa-filter"></i> Chất liệu</label>
+                <label for="material">
+                    <i class="fas fa-filter"></i> Chất liệu</label>
                 <select class="form-control" id="material">
                     <option>Tất cả</option>
                     <option>Gỗ</option>
@@ -14,7 +14,8 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label for="material"><i class="fa fa-sort-numeric-up"></i> Sắp xếp theo</label>
+                <label for="material">
+                    <i class="fa fa-sort-numeric-up"></i> Sắp xếp theo</label>
                 <select class="form-control" id="material">
                     <option>Không</option>
                     <option>Giá</option>
@@ -22,7 +23,8 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label for="material"><i class="fa fa-sort"></i> Thứ tự</label>
+                <label for="material">
+                    <i class="fa fa-sort"></i> Thứ tự</label>
                 <select class="form-control" id="material">
                     <option>Tăng</option>
                     <option>Giảm</option>
@@ -37,131 +39,32 @@
     </form>
 
 
+
     <div class="container-fluid border rounded mt-1 mb-1 p-2">
 
-        <div class="row mb-3">
-
-            <div class="col-md-3">
-                <div class="card product-card">
-                    <div class="card-header card-product-img">
-                        <a href="#">
-                            <img class="card-img-top p-2" src="https://sites.google.com/site/shophandmadetayninh/_/rsrc/1472763224503/dhong-khung-tranh/dhong-khung-anh-theo-yeu-cau/Copy%20of%20myfrare-2.jpg"
-                                alt=""> </a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="text-primary">Tên</th>
-                                    <td class="text-center card-product-name">Khung G001</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text-primary">Giá (VNĐ)</th>
-                                    <td class="text-center card-product-price">120000</td>
-                                </tr>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card product-card">
-                    <div class="card-header card-product-img">
-                        <a href="#">
-                            <img class="card-img-top p-2" src="https://sites.google.com/site/shophandmadetayninh/_/rsrc/1472763224503/dhong-khung-tranh/dhong-khung-anh-theo-yeu-cau/Copy%20of%20myfrare-2.jpg"
-                                alt=""> </a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="text-primary">Tên</th>
-                                    <td class="text-center card-product-name">Khung G001</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text-primary">Giá (VNĐ)</th>
-                                    <td class="text-center card-product-price">120000</td>
-                                </tr>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card product-card">
-                    <div class="card-header card-product-img">
-                        <a href="#">
-                            <img class="card-img-top p-2" src="https://sites.google.com/site/shophandmadetayninh/_/rsrc/1472763224503/dhong-khung-tranh/dhong-khung-anh-theo-yeu-cau/Copy%20of%20myfrare-2.jpg"
-                                alt=""> </a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="text-primary">Tên</th>
-                                    <td class="text-center card-product-name">Khung G001</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text-primary">Giá (VNĐ)</th>
-                                    <td class="text-center card-product-price">120000</td>
-                                </tr>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card product-card">
-                    <div class="card-header card-product-img">
-                        <a href="#">
-                            <img class="card-img-top p-2" src="https://sites.google.com/site/shophandmadetayninh/_/rsrc/1472763224503/dhong-khung-tranh/dhong-khung-anh-theo-yeu-cau/Copy%20of%20myfrare-2.jpg"
-                                alt=""> </a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="text-primary">Tên</th>
-                                    <td class="text-center card-product-name">Khung G001</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text-primary">Giá (VNĐ)</th>
-                                    <td class="text-center card-product-price">120000</td>
-                                </tr>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        {{#each products}}
 
         <div class="row mb-3">
 
+            {{#each this}}
+
             <div class="col-md-3">
                 <div class="card product-card">
                     <div class="card-header card-product-img">
                         <a href="#">
-                            <img class="card-img-top p-2" src="https://sites.google.com/site/shophandmadetayninh/_/rsrc/1472763224503/dhong-khung-tranh/dhong-khung-anh-theo-yeu-cau/Copy%20of%20myfrare-2.jpg"
-                                alt=""> </a>
+                            <img class="card-img-top p-2" src="{{this.image}}"
+                                alt="{{this.name}}"> </a>
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-bordered">
                             <tbody>
                                 <tr>
-                                    <th scope="row" class="text-primary">Tên</th>
-                                    <td class="text-center card-product-name">Khung G001</td>
+                                    <th scope="row" class="text-primary">Tên khung</th>
+                                    <td class="text-center card-product-name">{{this.name}}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="text-primary">Giá (VNĐ)</th>
-                                    <td class="text-center card-product-price">120000</td>
+                                    <td class="text-center card-product-price">{{this.price}}</td>
                                 </tr>
                                 </tr>
                             </tbody>
@@ -170,82 +73,11 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="card product-card">
-                    <div class="card-header card-product-img">
-                        <a href="#">
-                            <img class="card-img-top p-2" src="https://sites.google.com/site/shophandmadetayninh/_/rsrc/1472763224503/dhong-khung-tranh/dhong-khung-anh-theo-yeu-cau/Copy%20of%20myfrare-2.jpg"
-                                alt=""> </a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="text-primary">Tên</th>
-                                    <td class="text-center card-product-name">Khung G001</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text-primary">Giá (VNĐ)</th>
-                                    <td class="text-center card-product-price">120000</td>
-                                </tr>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card product-card">
-                    <div class="card-header card-product-img">
-                        <a href="#">
-                            <img class="card-img-top p-2" src="https://sites.google.com/site/shophandmadetayninh/_/rsrc/1472763224503/dhong-khung-tranh/dhong-khung-anh-theo-yeu-cau/Copy%20of%20myfrare-2.jpg"
-                                alt=""> </a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="text-primary">Tên</th>
-                                    <td class="text-center card-product-name">Khung G001</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text-primary">Giá (VNĐ)</th>
-                                    <td class="text-center card-product-price">120000</td>
-                                </tr>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card product-card">
-                    <div class="card-header card-product-img">
-                        <a href="#">
-                            <img class="card-img-top p-2" src="https://sites.google.com/site/shophandmadetayninh/_/rsrc/1472763224503/dhong-khung-tranh/dhong-khung-anh-theo-yeu-cau/Copy%20of%20myfrare-2.jpg"
-                                alt=""> </a>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="text-primary">Tên</th>
-                                    <td class="text-center card-product-name">Khung G001</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="text-primary">Giá (VNĐ)</th>
-                                    <td class="text-center card-product-price">120000</td>
-                                </tr>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            {{/each}}
 
         </div>
+
+        {{/each}}
 
     </div>
 
