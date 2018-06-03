@@ -17,6 +17,19 @@ passport.use('local.signup', new LocalStr({
     passwordField: 'password',
     passReqToCallback: true
 }, function(req, email, password, done){
+    req.checkBody('email', 'Email không hợp lệ.').notEmpty().isEmail();
+    req.checkBody('password', 'Mật khẩu không hợp lệ.').notEmpty().isLength({min: 4});
+    req.checkBody('name', 'Tên người dùng không được trống.').notEmpty();
+    req.checkBody('phone', 'Số điện thoại không được trống.').notEmpty();
+    req.checkBody('addr', 'Địa chỉ không được trống.').notEmpty();
+    var errors = req.validationErrors();
+    if (errors){
+        var emsg = [];
+        errors.forEach(function(error){
+            emsg.push(error.msg);
+        });
+        return done(null, false, req.flash('error', emsg));
+    }
     User.findOne({'email': email}, function(err, user){
         if (err){
             return done(err);
@@ -43,5 +56,34 @@ passport.use('local.signup', new LocalStr({
             }
             return done(null, newUser);
         });
+    });
+}));
+
+passport.use('local.signin', new LocalStr({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, function(req, email, password, done){
+    req.checkBody('email', 'Email không hợp lệ.').notEmpty().isEmail();
+    req.checkBody('password', 'Mật khẩu không hợp lệ.').notEmpty();
+    var errors = req.validationErrors();
+    if (errors){
+        var emsg = [];
+        errors.forEach(function(error){
+            emsg.push(error.msg);
+        });
+        return done(null, false, req.flash('error', emsg));
+    }
+    User.findOne({'email': email}, function(err, user){
+        if (err){
+            return done(err);
+        }
+        if (!user){
+            return done(null, false, {message: 'Email này chưa được đăng kí.'});
+        }
+        if (!user.validPassword(password)){
+            return done(null, false, {message: 'Mật khẩu không chính xác.'});
+        }
+        return done(null, user);
     });
 }));

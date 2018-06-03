@@ -1,19 +1,23 @@
 <div class="signin_background pt-5 pb-5">
     <div class="card border-dark card-sign-form animated bounceIn">
         <div class="card-body text-center">
-            <form>
+            {{#if msg}}
+            <div class="alert alert-danger" id="signup-err">{{msg}}</div>
+            {{/if}}
+            <form method="POST" action="\users\signin">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend label-holder">
                         <span class="input-group-text label-text-holder" id="basic-addon1">Email</span>
                     </div>
-                    <input type="email" class="form-control" required>
+                    <input type="email" class="form-control" name="email" required>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend label-holder">
                         <span class="input-group-text label-text-holder" id="basic-addon1">Mật khẩu</span>
                     </div>
-                    <input type="password" class="form-control" required>
+                    <input type="password" class="form-control" name="password" required>
                 </div>
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
                 <button type="submit" class="btn btn-primary">Đăng nhập</button>
             </form>
         </div>

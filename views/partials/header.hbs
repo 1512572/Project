@@ -22,8 +22,16 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i> Tài khoản</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        {{#if admin}}
+                        <a class="dropdown-item" href="#">Admin's private page</a>
+                        {{/if}}
+                        {{#if login}}
+                        <a class="dropdown-item" href="/users/Profile">Tài khoản</a>
+                        <a class="dropdown-item" href="/users/signout">Đăng xuất</a>
+                        {{else}}
                         <a class="dropdown-item" href="/users/signin">Đăng nhập</a>
                         <a class="dropdown-item" href="/users/signup">Đăng kí</a>
+                        {{/if}}                      
                     </div>
                 </li>
             </ul>
