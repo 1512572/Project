@@ -4,7 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var exphbs = require('express-handlebars');
 var mongoose = require('mongoose');
+var session = require('express-session');
 var logger = require('morgan');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,6 +15,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 mongoose.connect('mongodb://admin:abcd1234@ds245680.mlab.com:45680/group2webproject');
+require('./config/passport');
 
 // view engine setup
 app.engine('.hbs', exphbs({
@@ -25,6 +29,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: 'El Psy Kongroo', resave: false, saveUninitialized: false}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

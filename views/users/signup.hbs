@@ -1,41 +1,48 @@
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <div class="signup_background pt-5 pb-5">
     <div class="card border-dark card-sign-form animated bounceIn">
         <div class="card-body">
-            <form>
+            {{#if msg}}
+            <div class="alert alert-danger" id="signup-err">{{msg}}</div>
+            {{/if}}
+            <form method="POST" action="\users\signup">
                 <div class="form-group">
                     <label for="email" class="form-sign-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Nhập email" required>
+                    <input type="email" class="form-control" name="email" placeholder="Nhập email" required>
                 </div>
 
                 <div class="form-group">
                     <label for="password" class="form-sign-label">Mật khẩu</label>
-                    <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
+                    <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" required>
                 </div>
 
                 <div class="form-group">
                     <label for="repassword" class="form-sign-label">Nhập lại mật khẩu</label>
-                    <input type="password" class="form-control" id="repassword" placeholder="Nhập lại mật khẩu" required>
+                    <input type="password" class="form-control" name="repassword" placeholder="Nhập lại mật khẩu" required>
                 </div>
 
                 <div class="form-group">
                     <label for="name" class="form-sign-label">Tên người dùng</label>
-                    <input type="text" class="form-control" id="name" placeholder="Nhập tên" required>
+                    <input type="text" class="form-control" name="name" placeholder="Nhập tên" required>
                 </div>
 
                 <div class="form-group">
                     <label for="phone" class="form-sign-label">Số điện thoại</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Nhập số điện thoại" required>
+                    <input type="tel" class="form-control" name="phone" placeholder="Nhập số điện thoại" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="address" class="form-sign-label">Địa chỉ</label>
-                    <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" required>
+                    <label for="addr" class="form-sign-label">Địa chỉ</label>
+                    <input type="text" class="form-control" name="addr" placeholder="Nhập địa chỉ" required>
                 </div>
+
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <div class="g-recaptcha form-group ml-auto mr-auto" data-sitekey="6Led81wUAAAAAGUKKksPjil23C9Pnj8fhx9AuDtY"></div>
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Đăng kí</button>
                 </div>
-
+            
             </form>
         </div>
     </div>
