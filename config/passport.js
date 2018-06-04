@@ -84,6 +84,9 @@ passport.use('local.signin', new LocalStr({
         if (!user.validPassword(password)){
             return done(null, false, {message: 'Mật khẩu không chính xác.'});
         }
+        if (!user.status){
+            return done(null, false, {message: 'Tài khoản này đã bị khóa.'});
+        }
         return done(null, user);
     });
 }));
