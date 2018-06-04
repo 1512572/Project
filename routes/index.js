@@ -38,7 +38,6 @@ router.post('/shop', function (req, res, next) {
   var mat = req.body.material;
   var sortBy = req.body.sortBy;
   var order = req.body.order;
-  console.log(order);
   if (mat === 'all') {
     if (sortBy === 'none')
       return Product.find(function (err, docs) {

@@ -45,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next){
   res.locals.login = req.isAuthenticated();
   if (req.isAuthenticated()){
+    res.locals.userInfo = req.user;
     res.locals.admin = req.user.admin;
     console.log(req.user);
   }
