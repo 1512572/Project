@@ -1,5 +1,5 @@
 # Project
-Đồ án thực hành môn Phát triển ứng dụng Web lớp CNTN2015 trong học kì 2 năm học 2017 - 2018.
+Đồ án Phát triển ứng dụng Web lớp CNTN2015 trong học kì 2 năm học 2017 - 2018.
 
 ## Authors
 - Tạ Việt Tiến              -   MSSV 1512572.
