@@ -7,6 +7,9 @@
 
 ## Prerequisites
 - Cần sử dụng kết nối Internet.
+- Cần có NodeJS và npm.
+- Sử dụng $npm install để cài đặt các package cần thiết.
+
 
 
 
