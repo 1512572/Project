@@ -4,10 +4,8 @@ var Product = require('../models/product');
 
 var router = express.Router();
 
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({
-  extended: false
-}));
+router.use(bodyParser.json({limit: '5mb'}));
+router.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 
 
 /* GET home page. */
@@ -129,6 +127,15 @@ router.get('/product/:id', function (req, res, next) {
     });
   });
 
+});
+
+router.post('/add-img',function(req, res, next){
+  var imgData;
+  if (req.body.imgdata)
+    imgData = req.body.imgdata;
+  else
+    imgData = "Cannot read the image!";
+  res.render('error',{image: imgData});
 });
 
 module.exports = router;

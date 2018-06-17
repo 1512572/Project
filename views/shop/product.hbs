@@ -57,8 +57,10 @@
                     </table>
                 </div>
                 <div class="card-footer text-center">
-                    <input type="hidden">
-                    <button type="button" class="btn btn-lg btn-primary">Thêm vào giỏ</button>
+                    <form method="POST" action="/add-img">
+                        <input type="hidden" name="imgdata" id="imgdata">
+                        <button type="submit" class="btn btn-lg btn-primary">Thêm vào giỏ</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -149,6 +151,7 @@
                         'and display it in place of ImagerJs after that.');
                     localStorage.setItem('image_' + imageId, imageData);
                     console.log(imageData);
+                    $("#imgdata").val(imageData);
                 } catch (err) {
                     console.error(err);
                 }
@@ -157,7 +160,7 @@
     };
 
     var addNew = function () {
-        $('#img-button').hide();
+        $('#img-button').remove();
 
         var $imageContainer = $(
             '<div class="image-container">' +
@@ -166,7 +169,7 @@
             '       style="min-width: 300px; min-height: 200px; width: 300px;">' +
             '</div>');
 
-        
+
         $('#imagers').append($imageContainer);
         var imager = new ImagerJs.Imager($imageContainer.find('img'), options);
         imager.startSelector();
