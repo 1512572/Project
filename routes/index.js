@@ -4,8 +4,13 @@ var Product = require('../models/product');
 
 var router = express.Router();
 
-router.use(bodyParser.json({limit: '5mb'}));
-router.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
+router.use(bodyParser.json({
+  limit: '5mb'
+}));
+router.use(bodyParser.urlencoded({
+  limit: '5mb',
+  extended: true
+}));
 
 
 /* GET home page. */
@@ -129,13 +134,12 @@ router.get('/product/:id', function (req, res, next) {
 
 });
 
-router.post('/add-img',function(req, res, next){
-  var imgData;
-  if (req.body.imgdata)
-    imgData = req.body.imgdata;
+router.post('/add-img', function (req, res, next) {
+  var imgData = req.body.imgdata;
+  if (imgData)
+    res.send(imgData);
   else
-    imgData = "Cannot read the image!";
-  res.render('error',{image: imgData});
+    res.send('Nothing');
 });
 
 module.exports = router;

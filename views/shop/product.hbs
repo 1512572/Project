@@ -69,6 +69,7 @@
 </div>
 
 <script>
+    localStorage.clear();
     var pluginsConfig = {
         Rotate: {
             controlsCss: {
@@ -144,11 +145,6 @@
             saveImageData: function (imageId, imageData) {
                 try {
                     console.log('Save button clicked! ImageId:', imageId);
-                    console.log('ImageData argument here is the image encoded in base64 string. ' +
-                        'This function gets called anytime user clicks on `save` button. ' +
-                        'If one wants to disable edit after saving, check the `standalone-remote-upload.html` ' +
-                        'example file which shows how to upload image on the server ' +
-                        'and display it in place of ImagerJs after that.');
                     localStorage.setItem('image_' + imageId, imageData);
                     console.log(imageData);
                     $("#imgdata").val(imageData);
