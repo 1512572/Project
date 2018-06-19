@@ -11,13 +11,17 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
+//Config database connection
 mongoose.connect('mongodb://admin:abcd1234@ds245680.mlab.com:45680/group2webproject');
+
 require('./config/passport');
+
 
 // view engine setup
 app.engine('.hbs', exphbs({

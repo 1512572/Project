@@ -1,12 +1,21 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cloudinary = require('cloudinary').v2;
 var Product = require('../models/product');
 
 var router = express.Router();
 
+//Config Cloudinary
+cloudinary.config({ 
+  cloud_name: 'group2webapp', 
+  api_key: '623744951941442', 
+  api_secret: 'DbdBwyB-11gh0DtXIzELvR45z-I' 
+});
+
 router.use(bodyParser.json({
   limit: '5mb'
 }));
+
 router.use(bodyParser.urlencoded({
   limit: '5mb',
   extended: true
@@ -136,10 +145,16 @@ router.get('/product/:id', function (req, res, next) {
 
 router.post('/add-img', function (req, res, next) {
   var imgData = req.body.imgdata;
-  if (imgData)
-    res.send(imgData);
-  else
-    res.send('Nothing');
+  cloudinary.uploader.unsigned_upload(imgData, 'rli9ljen', function(err, result) { 
+    console.log('Hi');
+    if (err)
+      console.log(err);
+    else 
+    {
+      console.log(result);
+      return res.render('error',{image: result.url});
+    } 
+  });
 });
 
 module.exports = router;
