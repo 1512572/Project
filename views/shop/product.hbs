@@ -58,10 +58,12 @@
                 </div>
                 <div class="card-footer text-center">
                     <form method="POST" action="/add-to-cart">
-                        <input type="hidden" name="id" value="{{product._id}}">
-                        <input type="hidden" name="name" value="{{product.name}}">
-                        <input type="hidden" name="price" value="{{product.price}}">
-                        <input type="hidden" name="imgdata" value="https://menu.co.nz/wp-content/uploads/2016/02/icon-None.png">
+                        <input type="hidden" name="id" value="{{product._id}}" required>                  
+                        <div class="form-group">
+                            <label for="qty" class="form-control">Số lượng</label>
+                            <input type="number" name="qty" value="1" min="1" class="form-control" required>
+                        </div>
+                        <input type="hidden" name="imgdata" id="imgdata" value="https://menu.co.nz/wp-content/uploads/2016/02/icon-None.png">
                         <button type="submit" class="btn btn-lg btn-primary">Thêm vào giỏ</button>
                     </form>
                 </div>

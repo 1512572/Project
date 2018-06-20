@@ -56,6 +56,24 @@ html {
 	font-size: 1.2em;
 }
 
+.cart-name{
+	font-size: 1.3em;
+	font-weight: bold;
+	text-align: center !important;
+}
+
+.cart-price{
+	font-size: 1.3em;
+	font-weight: bold;
+	color: red;
+	text-align: center !important;
+}
+
+.total-cart-price{
+	font-weight: bold;
+	font-size: 2em;
+}
+
 /*------------- Header -----------------*/
 
 .navbar-brand {
@@ -193,10 +211,21 @@ img {
 	max-height: 300px;
 }
 
+.cart-img{
+	max-height: 100px;
+	width: auto;
+	max-width: 100%;
+
+}
+
 /*---------------------------------------------*/
 
 a {
 	color: #00B7FF;
+	text-decoration: none;
+}
+
+a:hover{
 	text-decoration: none;
 }
 

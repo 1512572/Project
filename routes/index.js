@@ -147,7 +147,9 @@ router.get('/product/:id', function (req, res, next) {
 router.post('/add-to-cart', function (req, res, next) {
   var image = req.body.imgdata;
   var id = req.body.id;
-  
+  var qty = req.body.qty;
+  if (qty<1)
+    return res.render('error',{message: 'Số lượng không hợp lệ.'});
   cloudinary.uploader.unsigned_upload(image, 'rli9ljen', function(err, result) { 
     if (err){
       return res.render('error', {message: err});
@@ -157,7 +159,7 @@ router.post('/add-to-cart', function (req, res, next) {
         if (error){
           return res.render('error', {message: error});
         }
-        cart.add(product, result.url);
+        cart.add(product, result.url, qty, result.public_id);
         req.session.cart = cart;
         console.log(cart);
         res.redirect('/shop');
@@ -165,6 +167,24 @@ router.post('/add-to-cart', function (req, res, next) {
 
     } 
   });
+});
+
+router.get('/cart', function(req, res, next){
+  res.render('checkout/cart', {title: 'Giỏ hàng'});
+});
+
+router.get('/remove-from-cart/:link', function(req, res, next){
+  var link = req.params.link;
+  for (var id in req.session.cart.items){
+    if (req.session.cart.items[id].key == link){
+      req.session.cart.count--;
+      req.session.cart.totalPrice = req.session.cart.totalPrice - req.session.cart.items[id].price
+      req.session.cart.items.splice(id, 1);
+      if (req.session.cart.totalPrice == 0)
+        req.session.cart = null;
+    }  
+  }
+  res.redirect("/cart");
 });
 
 module.exports = router;
