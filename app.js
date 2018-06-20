@@ -10,7 +10,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
-
+var MongoStore = require('connect-mongo')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -45,7 +45,14 @@ app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
 // app.use(express.urlencoded({ extended: false }));
 app.use(validator());
 app.use(cookieParser());
-app.use(session({secret: 'El Psy Kongroo', resave: false, saveUninitialized: false}));
+app.use(session({
+  secret: 'El Psy Kongroo', 
+  resave: false, 
+  saveUninitialized: false,
+  store: new MongoStore({mongooseConnection: mongoose.connection}),
+  cookie: {maxAge: 20 * 60 * 2000}//20m
+}));
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,13 +60,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next){
   res.locals.login = req.isAuthenticated();
-  if (req.isAuthenticated()){
-    res.locals.userInfo = req.user;
-    res.locals.admin = req.user.admin;
-    console.log(req.user);
-  }
-  else
-    res.locals.admin = false;
+  res.locals.session = req.session;
+
+  // if (req.isAuthenticated()){
+  //   res.locals.userInfo = req.user;
+  //   res.locals.admin = req.user.admin;
+  //   console.log(req.user);
+  // }
+  // else
+  //   res.locals.admin = false;
   next();
 });
 

@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cloudinary = require('cloudinary').v2;
 var Product = require('../models/product');
+var Cart = require('../models/cart');
 
 var router = express.Router();
 
@@ -143,16 +144,25 @@ router.get('/product/:id', function (req, res, next) {
 
 });
 
-router.post('/add-img', function (req, res, next) {
-  var imgData = req.body.imgdata;
-  cloudinary.uploader.unsigned_upload(imgData, 'rli9ljen', function(err, result) { 
-    console.log('Hi');
-    if (err)
-      console.log(err);
-    else 
-    {
-      console.log(result);
-      return res.render('error',{image: result.url});
+router.post('/add-to-cart', function (req, res, next) {
+  var image = req.body.imgdata;
+  var id = req.body.id;
+  
+  cloudinary.uploader.unsigned_upload(image, 'rli9ljen', function(err, result) { 
+    if (err){
+      return res.render('error', {message: err});
+    } else {
+      var cart = new Cart(req.session.cart ? req.session.cart : {});
+      Product.findById(id, function(error, product){
+        if (error){
+          return res.render('error', {message: error});
+        }
+        cart.add(product, result.url);
+        req.session.cart = cart;
+        console.log(cart);
+        res.redirect('/shop');
+      });
+
     } 
   });
 });
