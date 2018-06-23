@@ -61,7 +61,7 @@ router.post('/change-password', isLoggedIn, function(req, res, next){
   req.checkBody('oldpass', 'Mật khẩu không hợp lệ.').notEmpty().isLength({min: 4});;
   req.checkBody('newpass', 'Mật khẩu không hợp lệ.').notEmpty().isLength({min: 4});;
   req.checkBody('repass', 'Mật khẩu không hợp lệ.').notEmpty().isLength({min: 4});;
-  var id = req.body.id;
+  var id = req.user._id;
   var errors = req.validationErrors();
   if (errors){
       var emsg = [];
