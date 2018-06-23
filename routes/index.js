@@ -31,13 +31,13 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/shop', function (req, res, next) {
-  Product.find(function (err, docs) {
+  Product.find({status: true}).exec(function (err, docs) {
     var chunkSize = 4;
     var productChunks = [];
     for (var i = 0; i < docs.length; i += chunkSize) {
       productChunks.push(docs.slice(i, i + chunkSize));
     }
-    Product.find().distinct('material', function (err, docs) {
+    Product.find({status: true}).distinct('material', function (err, docs) {
       res.render('shop/shop', {
         title: 'Shop',
         products: productChunks,
@@ -53,13 +53,13 @@ router.post('/shop', function (req, res, next) {
   var order = req.body.order;
   if (mat === 'all') {
     if (sortBy === 'none')
-      return Product.find(function (err, docs) {
+      return Product.find({status: true}).exec(function (err, docs) {
         var chunkSize = 4;
         var productChunks = [];
         for (var i = 0; i < docs.length; i += chunkSize) {
           productChunks.push(docs.slice(i, i + chunkSize));
         }
-        Product.find().distinct('material', function (err, docs) {
+        Product.find({status: true}).distinct('material', function (err, docs) {
           res.render('shop/shop', {
             title: 'Shop',
             products: productChunks,
@@ -68,7 +68,7 @@ router.post('/shop', function (req, res, next) {
         });
       });
     else
-      return Product.find().sort([
+      return Product.find({status: true}).sort([
         [sortBy, order]
       ]).exec(function (err, docs) {
         var chunkSize = 4;
@@ -76,7 +76,7 @@ router.post('/shop', function (req, res, next) {
         for (var i = 0; i < docs.length; i += chunkSize) {
           productChunks.push(docs.slice(i, i + chunkSize));
         }
-        Product.find().distinct('material', function (err, docs) {
+        Product.find({status: true}).distinct('material', function (err, docs) {
           res.render('shop/shop', {
             title: 'Shop',
             products: productChunks,
@@ -87,14 +87,15 @@ router.post('/shop', function (req, res, next) {
   } else {
     if (sortBy === 'none')
       return Product.find({
-        material: mat
+        material: mat,
+        status: true
       }, function (err, docs) {
         var chunkSize = 4;
         var productChunks = [];
         for (var i = 0; i < docs.length; i += chunkSize) {
           productChunks.push(docs.slice(i, i + chunkSize));
         }
-        Product.find().distinct('material', function (err, docs) {
+        Product.find({status: true}).distinct('material', function (err, docs) {
           res.render('shop/shop', {
             title: 'Shop',
             products: productChunks,
@@ -104,7 +105,8 @@ router.post('/shop', function (req, res, next) {
       });
     else
       return Product.find({
-        material: mat
+        material: mat,
+        status: true
       }).sort([
         [sortBy, order]
       ]).exec(function (err, docs) {
@@ -113,7 +115,7 @@ router.post('/shop', function (req, res, next) {
         for (var i = 0; i < docs.length; i += chunkSize) {
           productChunks.push(docs.slice(i, i + chunkSize));
         }
-        Product.find().distinct('material', function (err, docs) {
+        Product.find({status: true}).distinct('material', function (err, docs) {
           res.render('shop/shop', {
             title: 'Shop',
             products: productChunks,
