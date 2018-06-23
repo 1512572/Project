@@ -3,6 +3,7 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 var User = require('../models/user');
+var svgCaptcha = require('svg-captcha');
 
 var csrfPro = csrf();
 router.use(csrfPro);
@@ -14,12 +15,12 @@ router.get('/signout', isLoggedIn, function(req, res, next){
 });
 
 router.get('/profile', isLoggedIn, function(req, res, next){
-  res.render('users/profile',{title: 'Tài khoản'});
+  res.render('users/profile',{title: 'Tài khoản', userInfo: req.user});
 });
 
 router.get('/edit-info', isLoggedIn, function(req, res, next){
   var msg = req.flash('error');
-  res.render('users/edit-info',{title: 'Sửa thông tin cá nhân', csrfToken: req.csrfToken(), msg: msg});
+  res.render('users/edit-info',{title: 'Sửa thông tin cá nhân', csrfToken: req.csrfToken(), msg: msg, userInfo: req.user});
 });
 
 router.post('/edit-info', isLoggedIn, function(req, res, next){
@@ -102,7 +103,9 @@ router.use('/', notLoggedIn, function(req, res, next){
 
 router.get('/signup', function(req, res, next) {
   var msg = req.flash('error');
-  res.render('users/signup', { title: 'Đăng kí', csrfToken: req.csrfToken(), msg: msg});
+  var captcha = svgCaptcha.create();
+  req.session.capt = captcha.text;
+  res.render('users/signup', { title: 'Đăng kí', csrfToken: req.csrfToken(), msg: msg, captchaImg: captcha.data});
 });
 
 router.post('/signup', passport.authenticate('local.signup',{

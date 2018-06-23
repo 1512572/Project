@@ -37,7 +37,11 @@
                 </div>
 
                 <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                <div class="g-recaptcha form-group ml-auto mr-auto" data-sitekey="6Led81wUAAAAAGUKKksPjil23C9Pnj8fhx9AuDtY"></div>
+                
+                <div class="form-group justify-content-center">
+                    {{{captchaImg}}}
+                    <input type="text" class="form-control" name="capt" placeholder="Nhập captcha" required>
+                </div>
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Đăng kí</button>

@@ -1,4 +1,5 @@
 var passport = require('passport');
+var svgCaptcha = require('svg-captcha');
 var User = require('../models/user');
 var LocalStr = require('passport-local').Strategy;
 
@@ -17,11 +18,17 @@ passport.use('local.signup', new LocalStr({
     passwordField: 'password',
     passReqToCallback: true
 }, function(req, email, password, done){
+    req.checkBody('capt', 'Vui lòng nhập captcha.').notEmpty();
     req.checkBody('email', 'Email không hợp lệ.').notEmpty().isEmail();
     req.checkBody('password', 'Mật khẩu không hợp lệ.').notEmpty().isLength({min: 4});
     req.checkBody('name', 'Tên người dùng không được trống.').notEmpty();
     req.checkBody('phone', 'Số điện thoại không được trống.').notEmpty();
     req.checkBody('addr', 'Địa chỉ không được trống.').notEmpty();
+    var capt = req.body.capt;
+    console.log(capt + ' ------------------------ ' + req.session.capt);
+    if (capt != req.session.capt){
+        return done(null, false, req.flash('error', 'Captcha không chính xác.'));
+    }
     var errors = req.validationErrors();
     if (errors){
         var emsg = [];
