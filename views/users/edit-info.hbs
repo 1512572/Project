@@ -10,17 +10,17 @@
 
                 <div class="form-group">
                     <label for="name" class="form-sign-label">Tên người dùng</label>
-                    <input type="text" class="form-control" name="name" value="{{userInfo.name}}">
+                    <input type="text" class="form-control" name="name" value="{{userInfo.name}}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="phone" class="form-sign-label">Số điện thoại</label>
-                    <input type="tel" class="form-control" name="phone" value="{{userInfo.phone}}">
+                    <input type="tel" class="form-control" name="phone" value="{{userInfo.phone}}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="addr" class="form-sign-label">Địa chỉ</label>
-                    <input type="text" class="form-control" name="addr" value="{{userInfo.addr}}">
+                    <input type="text" class="form-control" name="addr" value="{{userInfo.addr}}" required>
                 </div>
 
                 <input type="hidden" name="_csrf" value="{{csrfToken}}">

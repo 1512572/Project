@@ -1,13 +1,13 @@
 <div class="container mt-5">
     {{#if session.cart}} 
-        <div class="total-cart-price text-center mb-3">Tổng cộng: {{session.cart.totalPrice}}VNĐ</div>
+        <div class="total-cart-price text-center mb-3">Tổng cộng: <span style="color: red; font-weight: bolder; font-size: 1.5em;">{{session.cart.totalPrice}}</span> VNĐ</div>
         {{#each session.cart.items}}
             <div class="container-fluid rounded border bg-light p-2 m-2 row">
                 <div class="col-sm-4 text-center p-1"><img src="{{this.item.image}}" alt="Hình thiết kế" class="cart-img"></div>
                 <div class="col-sm-4 text-center p-1"><img src="{{this.imagePath}}" alt="Hình thiết kế" class="cart-img"></div>
                 <div class="col-sm-2 text-center">
                     <a href="product/{{this.item._id}}">
-                        <div class="container text-center cart-name m-2">{{this.item.name}} cái</div>
+                        <div class="container text-center cart-name m-2">Khung {{this.item.name}}</div>
                         <div class="container text-center cart-price m-2">{{this.price}}VNĐ</div>
                         <div class="container text-center cart-name m-2">{{this.qty}} cái</div>
                     </a>
@@ -20,14 +20,12 @@
             </div>
         {{/each}}
 
-
-
-
-
-
-
-
-
+        <div class="container justify-content-center text-center mt-5">
+            <a href="/order-info">
+                <button class="btn btn-primary">Mua hàng</button>
+            </a>  
+        </div>
+        
     {{else}}
         <div class="container alert alert-info text-center mt-5">
             <h1>Bạn chưa có sản phẩm nào trong giỏ hàng.</h1>

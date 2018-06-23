@@ -109,21 +109,34 @@ router.get('/signup', function(req, res, next) {
 });
 
 router.post('/signup', passport.authenticate('local.signup',{
-  successRedirect: '/users/profile',
   failureRedirect: '/users/signup',
   failureFlash: true
-}));
-
+}), function(req, res, next){
+  if (req.session.oldUrl){
+    var oldUrl = req.session.oldUrl;
+    req.session.oldUrl = null;
+    res.redirect(oldUrl); 
+  } else {
+    res.redirect('/');
+  }
+});
 router.get('/signin', function(req, res, next) {
   var msg = req.flash('error');
   res.render('users/signin', { title: 'Đăng nhập', csrfToken: req.csrfToken(), msg: msg});
 });
 
 router.post('/signin', passport.authenticate('local.signin',{
-  successRedirect: '/',
   failureRedirect: '/users/signin',
   failureFlash: true
-}));
+}), function(req, res, next){
+  if (req.session.oldUrl){
+    var oldUrl = req.session.oldUrl;
+    req.session.oldUrl = null;
+    res.redirect(oldUrl); 
+  } else {
+    res.redirect('/');
+  }
+});
 
 module.exports = router;
 
@@ -131,6 +144,7 @@ function isLoggedIn(req, res, next){
   if (req.isAuthenticated()){
     return next();
   }
+  req.session.oldUrl = req.url;
   res.redirect('/users/signin');
 }
 
@@ -141,9 +155,3 @@ function notLoggedIn(req, res, next){
   res.redirect('/users/signin');
 }
 
-function isAdmin(req, res, next){
-  if (req.isAuthenticated())
-    if (req.user.admin)
-      return next();
-  res.redirect('/users/signin');
-}

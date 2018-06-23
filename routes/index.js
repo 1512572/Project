@@ -4,7 +4,17 @@ var cloudinary = require('cloudinary').v2;
 var Product = require('../models/product');
 var Cart = require('../models/cart');
 
+var OnePayDomestic = require('vn-payments').OnePayDomestic;
+
 var router = express.Router();
+
+//Config OnePay
+const onepayDom = new OnePayDomestic({
+	paymentGateway: 'https://mtf.onepay.vn/onecomm-pay/vpc.op',
+	merchant: 'ONEPAY',
+	accessCode: 'D67342C2',
+	secureSecret: 'A3EFDFABA8653DF2342E8DAC29B51AF0',
+});
 
 //Config Cloudinary
 cloudinary.config({ 
@@ -163,7 +173,6 @@ router.post('/add-to-cart', function (req, res, next) {
         }
         cart.add(product, result.url, qty, result.public_id);
         req.session.cart = cart;
-        console.log(cart);
         res.redirect('/shop');
       });
 
@@ -171,7 +180,7 @@ router.post('/add-to-cart', function (req, res, next) {
   });
 });
 
-router.get('/cart', function(req, res, next){
+router.get('/cart', isLoggedIn, function(req, res, next){
   res.render('checkout/cart', {title: 'Giỏ hàng'});
 });
 
@@ -189,4 +198,118 @@ router.get('/remove-from-cart/:link', function(req, res, next){
   res.redirect("/cart");
 });
 
+router.get('/order-info', isLoggedIn, function(req, res, next){
+  if (!req.session.cart)
+    return res.redirect("/cart");
+  res.render('checkout/order-info', {title: 'Thông tin đơn hàng', defuser: req.user});
+});
+
+router.post('/order-info', isLoggedIn, function(req, res, next){
+  if (!req.session.cart)
+    return res.redirect("/cart");
+
+  var payMethod = req.body.paymethod;
+
+  if (payMethod == 'COD'){
+    return res.send('Ghi nhận đơn hàng thanh toán COD.');
+  }
+
+  var amount = req.session.cart.totalPrice;
+  var email = req.user.email;
+  var phone = req.body.phone;
+
+  const clientIp =
+		req.headers['x-forwarded-for'] ||
+		req.connection.remoteAddress ||
+		req.socket.remoteAddress ||
+    (req.connection.socket ? req.connection.socket.remoteAddress : null);
+
+  const checkoutData = {
+    amount: amount,
+    clientIp: clientIp.length > 15 ? '127.0.0.1' : clientIp,
+    locale: 'vn',
+    currency: 'VND',
+    orderId: `wf-${new Date().toISOString()}`,
+    transactionId: `wf-${new Date().toISOString()}`
+  };
+  res.locals.checkoutData = checkoutData;
+  
+    
+
+  let asyncCheckout = null;
+
+  if (payMethod == 'OnePay'){
+    asyncCheckout = checkoutOnePayDomestic(req, res);
+  }
+
+  if (asyncCheckout) {
+		asyncCheckout
+			.then(checkoutUrl => {
+				res.writeHead(301, { Location: checkoutUrl.href });
+				res.end();
+			})
+			.catch(err => {
+				res.send(err);
+			});
+	} else {
+		res.render('error',{title: 'Lỗi', message: 'Payment method not found'});
+  } 
+});
+
+router.get('/payment/:gateway/callback', (req, res) => {
+	const gateway = req.params.gateway;
+	let asyncFunc = null;
+
+  asyncFunc = callbackOnePayDomestic(req, res);
+
+	if (asyncFunc) {
+		asyncFunc.then(() => {
+      payResult = res.locals.paySucceed;
+      if (!payResult)
+        return res.render('error',{title: 'Lỗi', message: 'Thanh toán chưa hoàn thành.'});
+      else{
+        return res.render('index',{title: 'Trang chủ', message: 'Thanh toán thành công.'});
+      }
+		});
+	} else {
+		return res.render('error',{title: 'Lỗi', message: 'Không có phản hồi.'});
+	}
+});
+
 module.exports = router;
+
+function isLoggedIn(req, res, next){
+  if (req.isAuthenticated()){
+    return next();
+  }
+  req.session.oldUrl = req.url;
+  res.redirect('/users/signin');
+}
+
+function checkoutOnePayDomestic(req, res) {
+	const checkoutData = res.locals.checkoutData;
+	checkoutData.returnUrl = `http://${req.headers.host}/payment/onepaydom/callback`;
+
+	return onepayDom.buildCheckoutUrl(checkoutData).then(checkoutUrl => {
+		res.locals.checkoutUrl = checkoutUrl;
+
+		return checkoutUrl;
+	});
+}
+
+function callbackOnePayDomestic(req, res) {
+	const query = req.query;
+
+	return onepayDom.verifyReturnUrl(query).then(results => {
+		if (results) {
+			// res.locals.email = 'tu.nguyen@naustud.io';
+			// res.locals.orderId = results.orderId || '';
+			// res.locals.price = results.amount;
+
+			res.locals.paySucceed = results.isSuccess;
+			// res.locals.message = results.message;
+		} else {
+			res.locals.isSucceed = false;
+		}
+	});
+}
