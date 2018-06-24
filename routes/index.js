@@ -302,6 +302,7 @@ router.get('/payment/:gateway/callback', (req, res) => {
           cart: req.session.cart,
           name: req.session.ordername,
           phone: req.session.orderphone,
+          addr: req.session.orderaddr,
           paymethod: req.session.paymethod,
           status: 1,
           added: new Date()
@@ -364,6 +365,7 @@ function CODCheckout(req, res){
     cart: req.session.cart,
     name: req.session.ordername,
     phone: req.session.orderphone,
+    addr: req.session.orderaddr,
     paymethod: 'COD',
     status: 1,
     added: new Date()
