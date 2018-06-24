@@ -25,7 +25,6 @@ passport.use('local.signup', new LocalStr({
     req.checkBody('phone', 'Số điện thoại không được trống.').notEmpty();
     req.checkBody('addr', 'Địa chỉ không được trống.').notEmpty();
     var capt = req.body.capt;
-    console.log(capt + ' ------------------------ ' + req.session.capt);
     if (capt != req.session.capt){
         return done(null, false, req.flash('error', 'Captcha không chính xác.'));
     }

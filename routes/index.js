@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var cloudinary = require('cloudinary').v2;
 var Product = require('../models/product');
 var Cart = require('../models/cart');
+var Order = require('../models/order');
 
 var OnePayDomestic = require('vn-payments').OnePayDomestic;
 
@@ -199,8 +200,9 @@ router.get('/remove-from-cart/:link', function(req, res, next){
 });
 
 router.get('/order-info', isLoggedIn, function(req, res, next){
-  if (!req.session.cart)
+  if (!req.session.cart){
     return res.redirect("/cart");
+  }
   res.render('checkout/order-info', {title: 'Thông tin đơn hàng', defuser: req.user});
 });
 
@@ -208,15 +210,36 @@ router.post('/order-info', isLoggedIn, function(req, res, next){
   if (!req.session.cart)
     return res.redirect("/cart");
 
-  var payMethod = req.body.paymethod;
+  var amount = req.session.cart.totalPrice;
 
-  if (payMethod == 'COD'){
-    return res.send('Ghi nhận đơn hàng thanh toán COD.');
+  ///
+
+  req.checkBody('name', 'Tên người nhận không được trống.').notEmpty();
+  req.checkBody('phone', 'Số điện thoại không được trống.').notEmpty();
+  req.checkBody('addr', 'Địa chỉ không được trống.').notEmpty();
+
+  var errors = req.validationErrors();
+  if (errors){
+    var emsg = [];
+    errors.forEach(function(error){
+      emsg.push(error.msg);
+    });
+    return res.render('error',{title: 'Lỗi', message: emsg[0]});
   }
 
-  var amount = req.session.cart.totalPrice;
-  var email = req.user.email;
-  var phone = req.body.phone;
+  req.session.ordername = req.body.name;
+  req.session.orderphone = req.body.phone;
+  req.session.orderaddr = req.body.addr;
+
+  if (req.body.paymethod != 'COD' && req.body.paymethod != 'OnePay'){
+    return res.render('error',{title: 'Lỗi', message: 'Phuơng thức thanh toán không tồn tại'});
+  }
+
+  req.session.paymethod = req.body.paymethod;
+
+  ///
+
+  
 
   const clientIp =
 		req.headers['x-forwarded-for'] ||
@@ -238,11 +261,16 @@ router.post('/order-info', isLoggedIn, function(req, res, next){
 
   let asyncCheckout = null;
 
-  if (payMethod == 'OnePay'){
+  if (req.session.paymethod == 'OnePay'){
     asyncCheckout = checkoutOnePayDomestic(req, res);
   }
 
-  if (asyncCheckout) {
+  if (req.session.paymethod == 'COD'){
+
+    return CODCheckout(req, res);
+  }
+
+  if ((req.session.paymethod != 'COD') && asyncCheckout) {
 		asyncCheckout
 			.then(checkoutUrl => {
 				res.writeHead(301, { Location: checkoutUrl.href });
@@ -265,10 +293,26 @@ router.get('/payment/:gateway/callback', (req, res) => {
 	if (asyncFunc) {
 		asyncFunc.then(() => {
       payResult = res.locals.paySucceed;
-      if (!payResult)
+      if (!payResult){
         return res.render('error',{title: 'Lỗi', message: 'Thanh toán chưa hoàn thành.'});
+      }    
       else{
-        return res.render('index',{title: 'Trang chủ', message: 'Thanh toán thành công.'});
+        var order = new Order({
+          user: req.user,
+          cart: req.session.cart,
+          name: req.session.ordername,
+          phone: req.session.orderphone,
+          paymethod: req.session.paymethod,
+          status: 1,
+          added: new Date()
+        });
+        req.session.cart = null;
+        order.save(function(err, doc){
+          if (err){
+            return res.render('error',{title: 'Lỗi', message: 'Không thể lưu đơn hàng.'});
+          }
+          return res.render('index',{title: 'Trang chủ', message: 'Đơn hàng đã được ghi nhận.'});
+        });  
       }
 		});
 	} else {
@@ -312,4 +356,25 @@ function callbackOnePayDomestic(req, res) {
 			res.locals.isSucceed = false;
 		}
 	});
+}
+
+function CODCheckout(req, res){
+  var order = new Order({
+    user: req.user,
+    cart: req.session.cart,
+    name: req.session.ordername,
+    phone: req.session.orderphone,
+    paymethod: 'COD',
+    status: 1,
+    added: new Date()
+  });
+  
+  order.save(function(err, doc){
+    if (err){
+      console.log(order);
+      return res.render('error',{title: 'Lỗi', message: 'Không thể lưu đơn hàng.'});
+    }
+    req.session.cart = null;
+    return res.render('index',{title: 'Trang chủ', message: 'Đơn hàng đã được ghi nhận.'});
+  }); 
 }
