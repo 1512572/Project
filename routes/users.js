@@ -4,6 +4,7 @@ var csrf = require('csurf');
 var passport = require('passport');
 var User = require('../models/user');
 var svgCaptcha = require('svg-captcha');
+var Order = require('../models/order');
 
 var csrfPro = csrf();
 router.use(csrfPro);
@@ -92,6 +93,46 @@ router.post('/change-password', isLoggedIn, function(req, res, next){
         return res.render('users/change-password',{title: 'Đổi mật khẩu', csrfToken: req.csrfToken(), msg: err});
       }
       return res.redirect('/users/profile');
+    });
+  });
+});
+
+router.get('/view-order-list', isLoggedIn, function(req, res, next){
+  Order.find({user: req.user}).sort({added: -1}).exec(function(err, doc){
+    if (err){
+      return res.render('error', {message: err});
+    }
+    return res.render('users/order-list', {title: 'Danh sách dơn hàng', orders: doc});
+  });
+});
+
+router.get('/view-order-detail/:id', isLoggedIn, function(req, res, next){
+  var orderid = req.params.id;
+  Order.findOne({_id: orderid, user: req.user}).exec(function(err, doc){
+    if (err){
+      return res.render('error', {message: err});
+    }
+    if (doc.status == 1)
+      return res.render('users/order-detail', {title: 'Chi tiết đơn hàng', order: doc, orderstatus: 'Đang xử lí', cancelable: true});
+    if (doc.status > 1)
+      return res.render('users/order-detail', {title: 'Chi tiết đơn hàng', order: doc, orderstatus: 'Hoàn thành', cancelable: false});
+    if (doc.status < 1)
+      return res.render('users/order-detail', {title: 'Chi tiết đơn hàng', order: doc, orderstatus: 'Bị hủy', cancelable: false});
+  });
+});
+
+router.get('/cancel-order/:id', isLoggedIn, function(req, res, next){
+  var orderid = req.params.id;
+  Order.findOne({_id: orderid, user: req.user}).exec(function(err, doc){
+    if (err){
+      return res.render('error', {message: err});
+    }
+    doc.status = 0;
+    doc.save(function(err, doc){
+      if (err){
+        return res.render('error', {message: err});
+      }
+      return res.redirect('/users/view-order-list');
     });
   });
 });

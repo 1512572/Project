@@ -15,6 +15,13 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                {{#if admin}}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-shopping-cart"></i> Quản lí thành viên
+                    </a>
+                </li>
+                {{/if}}
                 <li class="nav-item">
                     <a class="nav-link" href="/cart">
                         <i class="fa fa-shopping-cart"></i> Giỏ hàng
@@ -25,9 +32,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i> Tài khoản</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        {{#if admin}}
-                        <a class="dropdown-item" href="#">Admin's private page</a>
-                        {{/if}}
+                        
                         {{#if login}}
                         <a class="dropdown-item" href="/users/Profile">Tài khoản</a>
                         <a class="dropdown-item" href="/users/signout">Đăng xuất</a>
