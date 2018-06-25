@@ -8,38 +8,56 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/"><i class="fa fa-home"></i> Trang chủ</a>
+                    <a class="nav-link" href="/">
+                        <i class="fa fa-home"></i> Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/shop"><i class="fa fa-store"></i> Shop</a>
+                    <a class="nav-link" href="/shop">
+                        <i class="fa fa-store"></i> Shop</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 {{#if admin}}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-shopping-cart"></i> Quản lí thành viên
+                    <a class="nav-link" href="/admin/order-manage">
+                        Quản lí đơn hàng
                     </a>
                 </li>
-                {{/if}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/product-manage">
+                        Quản lí sản phẩm
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/member-manage">
+                        Quản lí thành viên
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/analytics">
+                        Phân tích doanh số
+                    </a>
+                </li>
+                {{else}}
                 <li class="nav-item">
                     <a class="nav-link" href="/cart">
                         <i class="fa fa-shopping-cart"></i> Giỏ hàng
                         <span class='badge badge-light'>{{session.cart.count}}</span>
                     </a>
                 </li>
+                {{/if}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i> Tài khoản</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        
+
                         {{#if login}}
                         <a class="dropdown-item" href="/users/Profile">Tài khoản</a>
                         <a class="dropdown-item" href="/users/signout">Đăng xuất</a>
                         {{else}}
                         <a class="dropdown-item" href="/users/signin">Đăng nhập</a>
                         <a class="dropdown-item" href="/users/signup">Đăng kí</a>
-                        {{/if}}                      
+                        {{/if}}
                     </div>
                 </li>
             </ul>

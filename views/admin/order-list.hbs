@@ -1,0 +1,46 @@
+<div class="content container mt-3 mb-3">
+    <table id="myTable" class="table table-hover">
+        <thead>
+            <tr>
+                <!--When a header is clicked, run the sortTable function, with a parameter,
+                         0 for sorting by the first-child-td-element on row,
+                         1 for sorting by the second-child-td-element on row,
+                         2 for sorting by the thirt-child-td-element on row,
+                         3 for sorting by the fourth-child-td-element on row,
+                         ...:-->
+                <th scope="col" onclick="sortTable(0)" data-toggle="tooltip" title="Click để sắp xếp">Người nhận</th>
+                <th scope="col" onclick="sortTable(1)" data-toggle="tooltip" title="Click để sắp xếp">Ngày đặt</th>
+                <th scope="col" onclick="sortTable(2)" data-toggle="tooltip" title="Click để sắp xếp">Tổng tiền</th>
+                <th scope="col" onclick="sortTable(3)" data-toggle="tooltip" title="Click để sắp xếp">Tình trạng</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
+                    {{name}}
+                </td>
+                <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">{{added}}</td>
+                <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">{{items.totalPrice}}</td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Đang giao
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Đã xác nhận</a>
+                            <a class="dropdown-item" href="#">Hoàn thành</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-light" data-toggle="tooltip" title="Xóa">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
