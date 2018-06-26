@@ -2,45 +2,85 @@
     <table id="myTable" class="table table-hover">
         <thead>
             <tr>
-                <!--When a header is clicked, run the sortTable function, with a parameter,
-                         0 for sorting by the first-child-td-element on row,
-                         1 for sorting by the second-child-td-element on row,
-                         2 for sorting by the thirt-child-td-element on row,
-                         3 for sorting by the fourth-child-td-element on row,
-                         ...:-->
-                <th scope="col" onclick="sortTable(0)" data-toggle="tooltip" title="Click để sắp xếp">Người nhận</th>
-                <th scope="col" onclick="sortTable(1)" data-toggle="tooltip" title="Click để sắp xếp">Ngày đặt</th>
-                <th scope="col" onclick="sortTable(2)" data-toggle="tooltip" title="Click để sắp xếp">Tổng tiền</th>
-                <th scope="col" onclick="sortTable(3)" data-toggle="tooltip" title="Click để sắp xếp">Tình trạng</th>
-                <th scope="col"></th>
+                <th scope="col" data-toggle="tooltip" title="Click để sắp xếp">Người nhận</th>
+                <th scope="col" data-toggle="tooltip" title="Click để sắp xếp">Ngày đặt</th>
+                <th scope="col" data-toggle="tooltip" title="Click để sắp xếp">Tổng tiền</th>
+                <th scope="col" data-toggle="tooltip" title="Click để sắp xếp">Tình trạng</th>
             </tr>
         </thead>
-        <tbody>
-            {{#each orders}}
-            <tr>
-                <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">
-                    {{name}}
-                </td>
-                <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">{{added}}</td>
-                <td class='clickable-row' data-href="../member/view-order.html" data-toggle="tooltip" title="Click để xem chi tiết">{{items.totalPrice}}</td>
-                <td>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                            Đang giao
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Đã xác nhận</a>
-                            <a class="dropdown-item" href="#">Hoàn thành</a>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-light" data-toggle="tooltip" title="Xóa">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-            {{/each}}
+        <link rel='stylesheet' href='/stylesheets/pagination.css' />
+        <tbody id="orders-holder">
         </tbody>
+            <div id="pagination" class="ml-auto mr-auto justify-content-center text-center mb-5 pag mt-3"></div>
+            <script src="/javascripts/pagination.min.js"></script>
+            <script>
+                var orderList = [];
+                {{#each orders }}
+                var obj = new Object();
+                obj.status = '{{this.status}}';
+                obj.added = '{{this.added}}';
+                obj.id = '{{this._id}}';
+                obj.name = '{{this.name}}';
+                obj.amount = '{{this.cart.totalPrice}}';
+                orderList.push(obj);
+                {{/each}}
+                var options = {
+                    dataSource: orderList,
+                    pageSize: 5,
+                    callback: function (data, pagination) {
+                        var dataHtml = '';
+                        for (var i = 0; i < orderList.length; i++) {
+                            dataHtml += '<tr>';
+                            dataHtml += '<td class="clickable-row" data-href="/users/view-order-detail/' + orderList[i].id + '" data-toggle="tooltip" title="Click để xem chi tiết" scope="row">';
+                            dataHtml += orderList[i].name + '</td>';
+                            dataHtml += '<td class="clickable-row" data-href="/users/view-order-detail/' + orderList[i].id + '" data-toggle="tooltip" title="Click để xem chi tiết">';
+                            let dateDate =  new Date(orderList[i].added);
+                            let year = dateDate.getFullYear().toString();
+                            let month = dateDate.getMonth().toString();
+                            if (month.length < 2)
+                                month = '0' + month;
+                            let day = dateDate.getDate().toString();
+                            if (day.length < 2)
+                                day = '0' + day;
+                            let dateAdded = year + '/' + month + '/' + day;
+                            dataHtml += dateAdded + '</td>';
+                            dataHtml += '<td class="clickable-row" data-href="/users/view-order-detail/' + orderList[i].id + '" data-toggle="tooltip" title="Click để xem chi tiết">';
+                            dataHtml += orderList[i].amount + ' VNĐ' + '</td>';
+                            dataHtml += '<td>';
+                            dataHtml += '<div class="dropdown">';
+                            let twoStatus;
+                            let oneStatus;
+                            if (orderList[i].status == 1) {
+                                oneStatus = 'Đang xử lí';
+                                twoStatus = ['Hoàn thành', 'Đã hủy'];
+                            }
+                            if (orderList[i].status > 1) {
+                                oneStatus = 'Hoàn thành';
+                                twoStatus = ['Đang xử lí', 'Đã hủy'];
+                            }
+                            if (orderList[i].status < 1) {
+                                oneStatus = 'Đã hủy';
+                                twoStatus = ['Đang xử lí', 'Hoàn thành'];
+                            }
+                            dataHtml += '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+                            dataHtml += oneStatus;
+                            dataHtml += '</button>';
+                            dataHtml += '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
+                            dataHtml += '<a class="dropdown-item" href="#">';
+                            dataHtml += twoStatus[0];
+                            dataHtml += '</a>';
+                            dataHtml += '<a class="dropdown-item" href="#">';
+                            dataHtml += twoStatus[1];
+                            dataHtml += '</a>';
+                            dataHtml += '</div>';
+                            dataHtml += '</div>';
+                            dataHtml += '</td>';
+                            dataHtml += '</tr>';
+                        }
+                        $('#orders-holder').html(dataHtml);
+                    }
+                };
+                $('#pagination').pagination(options); 
+            </script>
     </table>
+</div>
