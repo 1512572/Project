@@ -569,6 +569,8 @@ router.get('/stats', isAdmin, function (req, res, next) {
 
         itemname = [];
         itemqty = [];
+        matname = [];
+        matqty = [];
         amount = 0;
         ordercount = 0;
         totalqty = 0;
@@ -589,6 +591,22 @@ router.get('/stats', isAdmin, function (req, res, next) {
                     itemname.push(orders[i].cart.items[j].item.name);
                     itemqty.push(Number(orders[i].cart.items[j].qty));
                 }
+
+
+                check = false;
+                for (var k = 0; k < matname.length; k++) {
+
+                    if (matname[k] == orders[i].cart.items[j].item.material) {
+                        matqty[k] += Number(orders[i].cart.items[j].qty);
+                        check = true;
+                        break;
+                    }
+
+                }
+                if (!check) {
+                    matname.push(orders[i].cart.items[j].item.material);
+                    matqty.push(Number(orders[i].cart.items[j].qty));
+                }
             }
 
             amount += orders[i].cart.totalPrice;
@@ -601,7 +619,9 @@ router.get('/stats', isAdmin, function (req, res, next) {
             count: ordercount,
             totalqty: totalqty,
             itemname: itemname,
-            itemqty: itemqty
+            itemqty: itemqty,
+            matname: matname,
+            matqty: matqty
         });
     });
 });
@@ -649,6 +669,8 @@ router.post('/stats', isAdmin, function (req, res, next) {
 
         itemname = [];
         itemqty = [];
+        matname = [];
+        matqty = [];
         amount = 0;
         ordercount = 0;
         totalqty = 0;
@@ -669,6 +691,21 @@ router.post('/stats', isAdmin, function (req, res, next) {
                     itemname.push(orders[i].cart.items[j].item.name);
                     itemqty.push(Number(orders[i].cart.items[j].qty));
                 }
+
+                check = false;
+                for (var k = 0; k < matname.length; k++) {
+
+                    if (matname[k] == orders[i].cart.items[j].item.material) {
+                        matqty[k] += Number(orders[i].cart.items[j].qty);
+                        check = true;
+                        break;
+                    }
+
+                }
+                if (!check) {
+                    matname.push(orders[i].cart.items[j].item.material);
+                    matqty.push(Number(orders[i].cart.items[j].qty));
+                }
             }
 
             amount += orders[i].cart.totalPrice;
@@ -681,7 +718,9 @@ router.post('/stats', isAdmin, function (req, res, next) {
             count: ordercount,
             totalqty: totalqty,
             itemname: itemname,
-            itemqty: itemqty
+            itemqty: itemqty,
+            matname: matname,
+            matqty: matqty
         });
     });
 

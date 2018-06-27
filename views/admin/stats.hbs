@@ -14,6 +14,13 @@
     <div style="height: 500px; width:auto;">
         <canvas id="myChart"></canvas>
     </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div style="height: 500px; width:auto;">
+        <canvas id="myChart1"></canvas>
+    </div>
     <div class="margin-div mt-5 mb-5 text-center">
         <br/>
         <br/>
@@ -31,14 +38,20 @@
 <script>
     var labelList = [];
     var qtyList = [];
+    var matList = [];
+    var matQty = [];
     {{#each itemname}}
         labelList.push('{{this}}');
     {{/each}}
-    console.log(labelList);
     {{#each itemqty}}
         qtyList.push('{{this}}');
     {{/each}}
-    console.log(qtyList);
+    {{#each matname}}
+        matList.push('{{this}}');
+    {{/each}}
+    {{#each matqty}}
+        matQty.push('{{this}}');
+    {{/each}}
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -47,6 +60,29 @@
             datasets: [{
                 label: 'Số lượng',
                 data: qtyList, 
+                backgroundColor: 'rgba(255, 99, 132)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales : {
+            yAxes : [{
+                ticks : {
+                    beginAtZero : true
+                }   
+            }]
+        }
+        }
+    });
+
+    var ctx1 = document.getElementById("myChart1").getContext('2d');
+    var myChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: matList, 
+            datasets: [{
+                label: 'Số lượng',
+                data: matQty, 
                 backgroundColor: 'rgba(255, 99, 132)',
                 borderWidth: 1
             }]
