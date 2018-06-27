@@ -196,6 +196,10 @@ footer .twitter:hover {
 	padding-left: 42%;
 }
 
+.alert-hover:hover{
+	background-color: lightskyblue !important;
+}
+
 /*------------------- Img ---------------------*/
 
 img {
@@ -236,3 +240,4 @@ a:hover{
 .maxwi{
 	width: 100%;
 }
+

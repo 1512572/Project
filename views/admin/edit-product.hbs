@@ -1,0 +1,174 @@
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link rel='stylesheet' href='/javascripts/imager/imagerJs.css' />
+<link rel='stylesheet' href='/stylesheets/imager.css' />
+<script src="/javascripts/imager/imagerJs.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<div class="container mt-5 mb-5">
+    <form method="POST" action="/admin/edit-product">
+        <div class="card product-detail-card">
+            <div class="form-group text-center mt-2">
+                <button class="btn btn-primary" onclick="addNew()" id="img-button">Sửa ảnh</button>
+            </div>
+            <div class="form-group" id="imagers">
+            </div>
+            <div class="card-body product-detail-card">
+                <table class="table table-hover table-bordered table-striped">
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-primary">Tên khung</th>
+                            <td class="text-center card-product-name"><input type="text" name="name" class="form-control" value="{{product.name}}" required></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-primary">Giá (VNĐ)</th>
+                            <td class="text-center card-product-price"><input type="number" min="1000" name="price" class="form-control" value="{{product.price}}" required></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-primary">Chất liệu</th>
+                            <td class="text-center card-product-details"><input type="text" name="material" class="form-control" value="{{product.material}}" required></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-primary">Mô tả</th>
+                            <td class="text-center card-product-details"><input type="text" name="desc" class="form-control" value="{{product.desc}}" required></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-primary">Chiều rộng (mm)</th>
+                            <td class="text-center card-product-details"><input type="number" min="1" name="width" class="form-control" value="{{product.width}}" required></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-primary">Chiều cao (mm)</th>
+                            <td class="text-center card-product-details"><input type="number" min="1" name="height" class="form-control" value="{{product.height}}" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="imgdata" id="imgdata" value="{{product.image}}" required>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <input type="hidden" name="id" value="{{product._id}}">
+            <div class="card-footer text-center">
+                <button type="submit" class="btn btn-primary">Sửa</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    localStorage.clear();
+    var pluginsConfig = {
+        Rotate: {
+            controlsCss: {
+                width: '15px',
+                height: '15px',
+                background: 'white',
+                border: '1px solid black'
+            },
+            controlsTouchCss: {
+                width: '25px',
+                height: '25px',
+                background: 'white',
+                border: '2px solid black'
+            }
+        },
+        Resize: {
+            controlsCss: {
+                width: '15px',
+                height: '15px',
+                background: 'white',
+                border: '1px solid black'
+            },
+            controlsTouchCss: {
+                width: '25px',
+                height: '25px',
+                background: 'white',
+                border: '2px solid black'
+            }
+        },
+        Crop: {
+            controlsCss: {
+                width: '15px',
+                height: '15px',
+                background: 'white',
+                border: '1px solid black'
+            },
+            controlsTouchCss: {
+                width: '25px',
+                height: '25px',
+                background: 'white',
+                border: '2px solid black'
+            }
+        },
+        Toolbar: {
+            toolbarSize: 85,
+            toolbarSizeTouch: 43,
+            tooltipEnabled: true,
+            tooltipCss: {
+                color: 'white',
+                background: 'black'
+            }
+        },
+        Delete: {
+            fullRemove: true
+        }
+    };
+
+    var options = {
+        plugins: ['Rotate', 'Crop', 'Resize', 'Save', 'Toolbar', 'Delete', 'Undo'],
+        editModeCss: {
+        },
+        pluginsConfig: pluginsConfig,
+        quality: {
+            sizes: [
+                { label: 'Original', scale: 1, quality: 1, percentage: 100 },
+                { label: 'Large', scale: 0.5, quality: 0.5, percentage: 50 },
+                { label: 'Medium', scale: 0.2, quality: 0.2, percentage: 20 },
+                { label: 'Small', scale: 0.05, quality: 0.05, percentage: 5 }
+            ],
+            allowCustomSetting: true
+        },
+        contentConfig: {
+            saveImageData: function (imageId, imageData) {
+                try {
+                    console.log('Save button clicked! ImageId:', imageId);
+                    localStorage.setItem('image_' + imageId, imageData);
+                    console.log(imageData);
+                    $("#imgdata").val(imageData);
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        }
+    };
+
+    var addNew = function () {
+        $('#img-button').remove();
+
+        var $imageContainer = $(
+            '<div class="image-container">' +
+            '  <img class="imager-test" ' +
+            '       src="" ' +
+            '       style="min-width: 300px; min-height: 200px; width: 300px;">' +
+            '</div>');
+
+
+        $('#imagers').append($imageContainer);
+        var imager = new ImagerJs.Imager($imageContainer.find('img'), options);
+        imager.startSelector();
+
+        imager.on('editStart', function () {
+            // fix image dimensions so that it could be properly placed on the grid
+            imager.$imageElement.css({
+                minWidth: 'auto',
+                minHeight: 'auto'
+            });
+            var qualitySelector = new window.ImagerQualitySelector(imager, options.quality);
+
+            var qualityContainer = $('<div class="imager-quality-standalone"></div>');
+            qualityContainer.append(qualitySelector.getElement());
+
+            imager.$editContainer.append(qualityContainer);
+
+            qualitySelector.show();
+            qualitySelector.update();
+        });
+    }; 
+</script>

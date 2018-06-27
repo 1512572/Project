@@ -5,18 +5,23 @@
         </div>
         <div class="card-body">
             <table class="table table-hover table-bordered table-striped">
+                <script>console.log('{{order._id}}'')</script>
                 <tbody>
                     <tr>
-                        <th scope="row" class="text-warning">ID</th>
+                        <th scope="row" class="text-primary">Mã đơn hàng</th>
                         <td class="text-center card-product-details">{{order._id}}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-primary">Tổng tiền</th>
-                        <td class="text-center card-product-details">{{order.cart.totalPrice}}</td>
+                        <td class="text-center card-product-details text-danger">{{order.cart.totalPrice}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-primary">Người đặt</th>
+                        <td class="text-center card-product-details">{{usermail}}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-primary">Tình trạng</th>
-                        <td class="text-center card-product-details">{{orderstatus}}</td>
+                        <td class="text-center card-product-details text-primary">{{orderstatus}}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-primary">Tên người nhận</th>
@@ -52,12 +57,24 @@
             </div>
         </div>
         {{#if cancelable}}
-        <div class="card-footer text-center">
-            <a href="/users/cancel-order/{{order._id}}">
-                <button class="btn btn-danger">
-                    Hủy
-                </button>
-            </a>
+        <div class="card-footer row text-center">
+
+            <div class="col-sm-6 text-center">
+                <a href="/admin/cancel-order/{{order._id}}">
+                    <button class="btn btn-danger">
+                        Hủy
+                    </button>
+                </a>
+            </div>
+
+            <div class="col-sm-6 text-center">
+                <a href="/admin/mark-as-done/{{order._id}}">
+                    <button class="btn btn-success">
+                        Hoàn tất
+                    </button>
+                </a>
+            </div>
+
         </div>
         {{/if}}
     </div>

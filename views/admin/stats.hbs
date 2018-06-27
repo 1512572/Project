@@ -1,0 +1,43 @@
+<div class="container mt-5 mb-5">
+    <form method="POST" action="/admin/stats">
+        <label for="fromdate">
+            Từ
+        </label>
+        <input type="date" name="fromdate" required>
+        <label for="todate">
+            Tới
+        </label>
+        <input type="date" name="todate" required>
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <button class="btn btn-primary" type="submit">Xem</button>
+    </form>
+    <div style="height: 500px; width:auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="margin-div mt-5 mb-5 text-center">
+        <br/>
+        <br/>
+        <span class="display-3">Tổng số tiền: {{amount}}</span>
+    </div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: 'Số lượng',
+                data: ['12', '19', '3', '5', '2', '3'],
+                backgroundColor: 'rgba(255, 99, 132)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+        }
+    });
+</script>

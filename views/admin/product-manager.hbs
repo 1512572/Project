@@ -1,0 +1,35 @@
+<div class="container mt-5 mb-5">
+    <link rel='stylesheet' href='/stylesheets/admin.css' />
+    <div class="text-center mb-5">
+        <a href="/admin/add-product">
+            <button class="btn btn-primary btn-lg">
+                Thêm sản phẩm
+            </button>
+        </a>
+    </div>
+    <table id="myTable" class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center" onclick="sortTable(0)" data-toggle="tooltip" title="Click để sắp xếp">Tình trạng</th>
+                <th scope="col" class="text-center">Hình ảnh</th>
+                <th scope="col" class="text-center" onclick="sortTable(2)" data-toggle="tooltip" title="Click để sắp xếp">Tên</th>
+                <th scope="col" class="text-center">Sửa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script src="/javascripts/admin.js"></script>
+            {{#each products}}
+            <tr>
+                {{#if this.status}}
+                <td scope="row" class="text-center text-success">Khả dụng</td>              
+                {{else}}
+                <td scope="row" class="text-center text-danger">Không khả dụng</td>
+                {{/if}}          
+                <td class="text-center"><img src="{{this.image}}" style="height: 100px !important; width: auto !important;"></td>
+                <td class="text-center">{{this.name}}</td>
+                <td class="text-center"><a href="/admin/view-product/{{this._id}}"><i class="fas fa-edit"></i></a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

@@ -65,15 +65,15 @@ app.use(function(req, res, next){
   if (req.isAuthenticated()){
     res.locals.userInfo = req.user;
     res.locals.admin = req.user.admin;
-    // console.log(req.user);
+  //   console.log(req.user);
   }
   else
     res.locals.admin = false;
   next();
 });
 
-app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/users', usersRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

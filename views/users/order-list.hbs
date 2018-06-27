@@ -1,55 +1,25 @@
-<div class="container mt-3 mb-3">
+<div class="container mt-5 mb-5">
 
-    <link rel='stylesheet' href='/stylesheets/pagination.css' />
-    <div class="container-fluid border rounded mt-1 mb-1 p-2" id="orders-holder">
-    </div>
-    <div id="pagination" class="ml-auto mr-auto justify-content-center text-center mb-5 pag mt-3"></div>
-
-    <script src="/javascripts/pagination.min.js"></script>
-    <script>
-        var orderList = [];
-        {{#each orders}}
-            var obj = new Object();
-            obj.status = '{{this.status}}';
-            obj.added = '{{this.added}}';
-            obj.id = '{{this._id}}';
-            obj.user = '{{this.user._id}}';
-            obj.amount = '{{this.cart.totalPrice}}';
-            orderList.push(obj);
-        {{/each}}
-        var options = {
-            dataSource: orderList,
-            pageSize: 10,
-            callback: function (data, pagination) {
-                var dataHtml = '';
-                for (var i = 0; i < orderList.length; i++){
-
-                    dataHtml += '<a href="/users/view-order-detail/' + orderList[i].id + '">';
-                    dataHtml += '<div class="alert alert-light rounded border border-dark row mt-2 mb-2 p-2" style="font-size: 1.4em;">';
-                    dataHtml += '<div class="col-sm-2 text-center">';
-                    if (orderList[i].status == 1){
-                        dataHtml += 'Đang xử lí';
-                    }
-                    if (orderList[i].status > 1){
-                        dataHtml += 'Hoàn thành';
-                    }
-                    if (orderList[i].status < 1){
-                        dataHtml += 'Đã bị hủy';
-                    }
-                    dataHtml += '</div>';
-                    dataHtml += '<div class="col-sm-8 text-center">';
-                    dataHtml += orderList[i].added;
-                    dataHtml += '</div>';
-                    dataHtml += '<div class="col-sm-2 text-center text-danger" style="font-weight: bold;">';
-                    dataHtml += orderList[i].amount + ' VNĐ';
-                    dataHtml += '</div>';
-                    dataHtml += '</div>';
-                    dataHtml += '</a>';
-                }       
-                $('#orders-holder').html(dataHtml);
-            }
-        };
-        $('#pagination').pagination(options); 
-    </script>
-
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="text-center">Tình trạng</th>
+                <th scope="col" class="text-center">ID</th>
+                <th scope="col" class="text-center">Thời gian</th>
+                <th scope="col" class="text-center">Tổng tiền</th>
+                <th scope="col" class="text-center">Sửa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <th scope="row" class="text-center text-primary">{{this.status}}</th>        
+                <td class="text-center">{{this.id}}</td>
+                <td class="text-center">{{this.added}}</td>
+                <td class="text-center text-danger">{{this.cart.totalPrice}}</td>
+                <td class="text-center"><a href="/users/view-order-detail/{{this._id}}"><i class="fas fa-edit"></i></a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
