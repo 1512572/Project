@@ -1,25 +1,73 @@
 <div class="container mt-5 mb-5">
-
-    <table class="table table-striped table-hover">
+    <link rel='stylesheet' href='/stylesheets/admin.css' />
+    <p class="font-italic">Tình trạng: 0: Hủy; 1: Đang xử lí, 2: Hoàn thành.</p>
+    <table id="myTable" class="table table-striped table-hover">
         <thead>
             <tr>
-                <th scope="col" class="text-center">Tình trạng</th>
-                <th scope="col" class="text-center">ID</th>
-                <th scope="col" class="text-center">Thời gian</th>
-                <th scope="col" class="text-center">Tổng tiền</th>
+                <th scope="col" class="text-center" onclick="sortTable(0)" data-toggle="tooltip" title="Click để sắp xếp">Tình trạng</th>
+                <th scope="col" class="text-center" onclick="sortTable(1)" data-toggle="tooltip" title="Click để sắp xếp">ID</th>
+                <th scope="col" class="text-center" onclick="sortTable(2)" data-toggle="tooltip" title="Click để sắp xếp">Ngày đặt</th>
+                <th scope="col" class="text-center" onclick="sortTable(3)" data-toggle="tooltip" title="Click để sắp xếp">Thanh toán</th>
+                <th scope="col" class="text-center" onclick="sortTable(4, true)" data-toggle="tooltip" title="Click để sắp xếp">Tổng tiền</th>
                 <th scope="col" class="text-center">Sửa</th>
             </tr>
         </thead>
-        <tbody>
-            {{#each orders}}
-            <tr>
-                <th scope="row" class="text-center text-primary">{{this.status}}</th>        
-                <td class="text-center">{{this.id}}</td>
-                <td class="text-center">{{this.added}}</td>
-                <td class="text-center text-danger">{{this.cart.totalPrice}}</td>
-                <td class="text-center"><a href="/users/view-order-detail/{{this._id}}"><i class="fas fa-edit"></i></a></td>
-            </tr>
-            {{/each}}
+        <tbody id="holder">
+            <script src="/javascripts/admin.js"></script>
+            <script>
+                var orderList = [];
+                {{#each orders }}
+                    var obj = new Object();
+                    obj.status = '{{this.status}}';
+                    obj.added = '{{this.added}}';
+                    obj.id = '{{this._id}}';
+                    obj.paymethod = '{{this.paymethod}}';
+                    obj.totalPrice = '{{this.cart.totalPrice}}';
+                    orderList.push(obj);
+                {{/each}}
+
+                var dataHtml = '';
+                for (var i = 0; i < orderList.length; i++) {
+                    dataHtml += '<tr>';
+                    dataHtml += '<td scope="row" class="text-center text-primary">';
+                    dataHtml += orderList[i].status;
+                    dataHtml += '</td>';        
+                    dataHtml += '<td class="text-center">';
+                    dataHtml += orderList[i].id;
+                    dataHtml += '</td>';
+                    dataHtml += '<td id="dateAdded" class="text-center">';
+                    let dateDate =  new Date(orderList[i].added);
+                    let year = dateDate.getFullYear().toString();
+                    let month = (dateDate.getMonth() + 1).toString();
+                    if (month.length < 2)
+                        month = '0' + month;
+                    let day = dateDate.getDate().toString();
+                    if (day.length < 2)
+                        day = '0' + day;
+                    let hours = dateDate.getHours().toString();
+                    if (hours.length < 2)
+                        hours = '0' + hours;
+                    let minutes = dateDate.getMinutes().toString();
+                    if (minutes.length < 2)
+                        minutes = '0' + minutes;
+                    let seconds = dateDate.getSeconds().toString();
+                    if (seconds.length < 2)
+                        seconds = '0' + seconds;
+                    let dateAdded = year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+                    dataHtml += dateAdded + '</td>';
+                    dataHtml += '<td class="text-center">';
+                    dataHtml += orderList[i].paymethod;
+                    dataHtml += '</td>';
+                    dataHtml += '<td class="text-center text-danger">';
+                    dataHtml += orderList[i].totalPrice;
+                    dataHtml += '</td>';
+                    dataHtml += '<td class="text-center"><a href="/admin/view-order/';
+                    dataHtml += orderList[i].id;
+                    dataHtml += '"><i class="fas fa-edit"></i></a></td>';
+                    dataHtml += '</tr>';
+                }
+                $('#holder').html(dataHtml);
+            </script>
         </tbody>
     </table>
 </div>

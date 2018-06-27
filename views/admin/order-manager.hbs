@@ -16,7 +16,7 @@
         <tbody id="holder">
             <script src="/javascripts/admin.js"></script>
             <script>
-                var memberList = [];
+                var orderList = [];
                 {{#each orders }}
                     var obj = new Object();
                     obj.status = '{{this.status}}';
@@ -25,23 +25,23 @@
                     obj.name = '{{this.name}}';
                     obj.paymethod = '{{this.paymethod}}';
                     obj.totalPrice = '{{this.cart.totalPrice}}';
-                    memberList.push(obj);
+                    orderList.push(obj);
                 {{/each}}
 
                 var dataHtml = '';
-                for (var i = 0; i < memberList.length; i++) {
+                for (var i = 0; i < orderList.length; i++) {
                     dataHtml += '<tr>';
                     dataHtml += '<td scope="row" class="text-center text-primary">';
-                    dataHtml += memberList[i].status;
+                    dataHtml += orderList[i].status;
                     dataHtml += '</td>';        
                     dataHtml += '<td class="text-center">';
-                    dataHtml += memberList[i].id;
+                    dataHtml += orderList[i].id;
                     dataHtml += '</td>';
                     dataHtml += '<td class="text-center">';
-                    dataHtml += memberList[i].name;
+                    dataHtml += orderList[i].name;
                     dataHtml += '</td>';
                     dataHtml += '<td id="dateAdded" class="text-center">';
-                    let dateDate =  new Date(memberList[i].added);
+                    let dateDate =  new Date(orderList[i].added);
                     let year = dateDate.getFullYear().toString();
                     let month = (dateDate.getMonth() + 1).toString();
                     if (month.length < 2)
@@ -61,13 +61,13 @@
                     let dateAdded = year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
                     dataHtml += dateAdded + '</td>';
                     dataHtml += '<td class="text-center">';
-                    dataHtml += memberList[i].paymethod;
+                    dataHtml += orderList[i].paymethod;
                     dataHtml += '</td>';
                     dataHtml += '<td class="text-center text-danger">';
-                    dataHtml += memberList[i].totalPrice;
+                    dataHtml += orderList[i].totalPrice;
                     dataHtml += '</td>';
                     dataHtml += '<td class="text-center"><a href="/admin/view-order/';
-                    dataHtml += memberList[i].id;
+                    dataHtml += orderList[i].id;
                     dataHtml += '"><i class="fas fa-edit"></i></a></td>';
                     dataHtml += '</tr>';
                 }
