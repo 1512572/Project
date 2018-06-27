@@ -13,23 +13,68 @@
                 <th scope="col" class="text-center" onclick="sortTable(0)" data-toggle="tooltip" title="Click để sắp xếp">Tình trạng</th>
                 <th scope="col" class="text-center">Hình ảnh</th>
                 <th scope="col" class="text-center" onclick="sortTable(2)" data-toggle="tooltip" title="Click để sắp xếp">Tên</th>
+                <th scope="col" class="text-center" onclick="sortTable(3)" data-toggle="tooltip" title="Click để sắp xếp">Ngày thêm</th>
                 <th scope="col" class="text-center">Sửa</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="holder">
             <script src="/javascripts/admin.js"></script>
-            {{#each products}}
-            <tr>
-                {{#if this.status}}
-                <td scope="row" class="text-center text-success">Khả dụng</td>              
-                {{else}}
-                <td scope="row" class="text-center text-danger">Không khả dụng</td>
-                {{/if}}          
-                <td class="text-center"><img src="{{this.image}}" style="height: 100px !important; width: auto !important;"></td>
-                <td class="text-center">{{this.name}}</td>
-                <td class="text-center"><a href="/admin/view-product/{{this._id}}"><i class="fas fa-edit"></i></a></td>
-            </tr>
-            {{/each}}
+            <script>
+                var productList = [];
+                {{#each products }}
+                    var obj = new Object();
+                    obj.status = '{{this.status}}';
+                    obj.added = '{{this.added}}';
+                    obj.id = '{{this._id}}';
+                    obj.name = '{{this.name}}';
+                    obj.image = '{{this.image}}';
+                    productList.push(obj);
+                {{/each}}
+
+                var dataHtml = '';
+                for (var i = 0; i < productList.length; i++) {
+                    dataHtml += '<tr>';
+                    dataHtml += '<td scope="row" class="text-center text-success">';
+                    if (productList[i].status === 'true') {
+                        dataHtml += 'Khả dụng';
+                    }
+                    else {
+                        dataHtml += 'Không khả dụng';
+                    }
+                    dataHtml += '</td>';
+                    dataHtml += '<td class="text-center"><img src="';
+                    dataHtml += productList[i].image;
+                    dataHtml += '" style="height: 100px !important; width: auto !important;"></td>';
+                    dataHtml += '<td class="text-center">';
+                    dataHtml += productList[i].name;
+                    dataHtml += '</td>';
+                    dataHtml += '<td id="dateAdded" class="text-center">';
+                    let dateDate =  new Date(productList[i].added);
+                    let year = dateDate.getFullYear().toString();
+                    let month = (dateDate.getMonth() + 1).toString();
+                    if (month.length < 2)
+                        month = '0' + month;
+                    let day = dateDate.getDate().toString();
+                    if (day.length < 2)
+                        day = '0' + day;
+                    let hours = dateDate.getHours().toString();
+                    if (hours.length < 2)
+                        hours = '0' + hours;
+                    let minutes = dateDate.getMinutes().toString();
+                    if (minutes.length < 2)
+                        minutes = '0' + minutes;
+                    let seconds = dateDate.getSeconds().toString();
+                    if (seconds.length < 2)
+                        seconds = '0' + seconds;
+                    let dateAdded = year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+                    dataHtml += dateAdded + '</td>';
+                    dataHtml += '<td class="text-center"><a href="/admin/view-product/';
+                    dataHtml += productList[i].id;
+                    dataHtml += '"><i class="fas fa-edit"></i></a></td>';
+                    dataHtml += '</tr>';
+                }
+                $('#holder').html(dataHtml);
+            </script>
         </tbody>
     </table>
 </div>
