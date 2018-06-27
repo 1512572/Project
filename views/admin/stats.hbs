@@ -17,7 +17,11 @@
     <div class="margin-div mt-5 mb-5 text-center">
         <br/>
         <br/>
-        <span class="display-3">Tổng số tiền: {{amount}}</span>
+        <span class="display-3">Đơn hàng hoàn thành: <span style="color: orange;">{{count}}</span></span>
+        <br/>
+        <span class="display-3">Sản phẩm bán được: <span style="color: blue;">{{totalqty}}</span></span>
+        <br/>
+        <span class="display-3">Doanh thu: <span style="color: red;">{{amount}}</span> VNĐ</span>
     </div>
 
 </div>
@@ -25,19 +29,36 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script>
+    var labelList = [];
+    var qtyList = [];
+    {{#each itemname}}
+        labelList.push('{{this}}');
+    {{/each}}
+    console.log(labelList);
+    {{#each itemqty}}
+        qtyList.push('{{this}}');
+    {{/each}}
+    console.log(qtyList);
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: labelList, 
             datasets: [{
                 label: 'Số lượng',
-                data: ['12', '19', '3', '5', '2', '3'],
+                data: qtyList, 
                 backgroundColor: 'rgba(255, 99, 132)',
                 borderWidth: 1
             }]
         },
         options: {
+            scales : {
+            yAxes : [{
+                ticks : {
+                    beginAtZero : true
+                }   
+            }]
+        }
         }
     });
 </script>
